@@ -1,7 +1,6 @@
 # Frontend development in Kotlin
 
-Kotlin can be used for frontend development in several ways thanks to its multiplatform capabilities.
-We are going to see two examples, one with JavaFx and one with Compose Multiplatform.
+
 
 ## JavaFx
 
