@@ -1,14 +1,9 @@
 # JavaZone 2025 Kotlin workshop
 
-
-
 ## Preparation
 
 1. Clone this repository `git clone https://github.com/worldline/kotlin-workshop-javazone2025.git`
-1. Download and Install IntelliJ IDEA, preferably through [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/).
-    - Download and install the toolbox for your OS
-    - Use the toolbox to install IntelliJ IDEA
-        ![Install IntelliJ IDEA from JetBrains Toolbox](./assets/install-idea-from-jb-toolbox.png)
+1. Download and Install IntelliJ IDEA (preferably through [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/)) and these plugins: Android and Kotlin Multiplatform. 
 
 ## Part 1 - Tour of the Kotlin language
 

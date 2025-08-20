@@ -1,0 +1,18 @@
+# https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
+[versions]
+guava = "33.4.6-jre"
+junit-jupiter-engine = "5.12.1"
+ktfx = "0.3"
+kotlinx-coroutines = "1.10.2"
+
+[libraries]
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-engine" }
+ktfx = { module = "com.hanggrian.ktfx:ktfx", version.ref = "ktfx" }
+ktfx-controlsfx = { module = "com.hanggrian.ktfx:ktfx-controlsfx", version.ref = "ktfx" }
+ktfx-jfoenix = { module = "com.hanggrian.ktfx:ktfx-jfoenix", version.ref = "ktfx" }
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "2.2.0" }
+javafx = { id = "org.openjfx.javafxplugin", version = "0.1.0" }
