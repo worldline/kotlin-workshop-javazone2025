@@ -45,6 +45,5 @@ In addition to that, also has Kotlin exclusive ones (that usually run on the JVM
 
 With its support of Jupyter notebooks and availability of JVM (such as Spark) and Kotlin native analysis and plotting libraries, Kotlin is a great language for data science.
 
-
 ## Part 5 - GenAI programming
 
