@@ -1,17 +1,36 @@
 # JavaZone 2025 Kotlin workshop
 
+Weclcome to the Kotlin workshop for JavaZone 2025!
+
+This goal of this workshop is to illustrate how Kotlin is a **write once run everywhere** language.
+Indeed, Kotlin can taget Android, iOS, Web, Desktop and Server.
+
+![kmp](assets/kmp.png)
+
+We will see this through different applications types: frontend, backend, AI-powered and data science.
+That's why the workshop is divided into 5 parts, where part 1 is a qui ck tour of the Kotlin language and the other parts are different application types.
+Is it recommended to follow part 1 first and you can follow the other ones in any order, but you can stick to the agenda if you want to experiment first aspects where multiplatform shines the most.
+
+We'll be thus using different frameworks and libraries.
+This workshop does not aim to teach all these in detail, but rather to give you a quick overview of what is possible.
+So, let's get started!
+
 ## Preparation
 
 1. Clone this repository `git clone https://github.com/worldline/kotlin-workshop-javazone2025.git`
 1. Download and Install IntelliJ IDEA (preferably through [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/))
-   and these plugins: Android and Kotlin Multiplatform.
+   and these plugins: Android and Kotlin Multiplatform (the latter is only available on macOS currently).
 
 ## Part 1 - Tour of the Kotlin language
 
-- Expected duration: 40 minutes
+- Expected duration: 30 minutes
 - Recommended IDE: IntelliJ IDEA (Community or Ultimate)
 - It is also possible to follow this part by opening notebooks in GitHub and doing the exercises in the Kotlin
   Playground.
+
+This section is a quick tour of the Kotlin language to get you familiar with its syntax and main features.
+It is also a preparation to better tackle the next sections.
+When needed, you can go back to this section to check how some language feature works.
 
 1. Open this notebook to try some prominent Kotlin feature [01-01-kotlin-tour.ipynb](./01-01-kotlin-tour.ipynb)
 1. Next, let's do some exercises that are listed in the file [01-02-exercises.ipynb](./01-02-exercises.ipynb)
@@ -24,16 +43,26 @@
 
 ## Part 2 - Frontend development
 
-- Expected duration: 30 minutes
+- Expected duration: 40 minutes
 - Recommended IDE: IntelliJ IDEA (Community or Ultimate)
 
-Kotlin can be used for frontend development in several ways thanks to its multiplatform capabilities.
-We are going to see two examples, one with JavaFx and one with Compose Multiplatform.
+Kotlin supports existing JS and JVM UI frameworks thanks to its multiplatform capabilities.
+Meaning that we can code ReactJS or JavaFX applications using Kotlin.
+It also has its own UI framework called Compose Multiplatform, which supports desktop (Windows, MacOS, Linux), web and mobile (Android and iOS), making it a *write once, run anywhere* framework.
+Thanks to Kotlin DSL capabilities, UIs can be described in a declarative way, similar to HTML.
 
-1. Compose Multiplatform [03-01-compose.md](02-01-compose.md)
+In this part, we'll focus on Compose multiplatform, but there is also a bonus section on JavaFX.
+
+
+1. Compose Multiplatform: [03-01-compose.md](02-01-compose.md)
 1. (Bonus) JavaFx with Kotlin: [03-02-javafx.md](02-02-javafx.md)
 
 ## Part 3 - AI-powered applications
+
+- Expected duration: 30 minutes
+- Recommended IDE: IntelliJ IDEA (Community or Ultimate)
+
+Kotlin
 
 ## Part 4 - backend development
 
