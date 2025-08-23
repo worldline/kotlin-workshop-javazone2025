@@ -18,12 +18,12 @@ So, let's get started!
 ## Preparation
 
 1. Clone this repository `git clone https://github.com/worldline/kotlin-workshop-javazone2025.git`
-1. Download and Install IntelliJ IDEA (preferably through [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/))
-   and these plugins: Android and Kotlin Multiplatform (the latter is only available on macOS currently).
+1. IntelliJ IDEA Community or Ultimate (preferably through [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/)) and these plugins: Android and Kotlin Multiplatform (the latter is only available on macOS currently).
+1. [gradle](https://gradle.org/install/) (on Windows, you can use [Scoop](https://scoop.sh/) or [Chocolatey](https://chocolatey.org/install))
 
 ## Part 1 - Tour of the Kotlin language
 
-- Expected duration: 30 minutes
+- Estimated duration: 30 minutes
 - Recommended IDE: IntelliJ IDEA (Community or Ultimate)
 - It is also possible to follow this part by opening notebooks in GitHub and doing the exercises in the Kotlin
   Playground.
@@ -43,7 +43,7 @@ When needed, you can go back to this section to check how some language feature 
 
 ## Part 2 - Frontend development
 
-- Expected duration: 40 minutes
+- Estimated duration: 40 minutes
 - Recommended IDE: IntelliJ IDEA (Community or Ultimate)
 
 Kotlin supports existing JS and JVM UI frameworks thanks to its multiplatform capabilities.
@@ -59,22 +59,36 @@ In this part, we'll focus on Compose multiplatform, but there is also a bonus se
 
 ## Part 3 - AI-powered applications
 
-- Expected duration: 30 minutes
+- Estimated duration: 30 minutes
 - Recommended IDE: IntelliJ IDEA (Community or Ultimate)
 
-Kotlin
+After the AI boom, many AI libraries have been created.
+Kotlin supports the famous JVM langchain4j and has its own AI library called Koog.
+
+We'll focus on Koog in this part since it support the Web and Desktop targets, making it a nice showcase for **write once run everywhere**.
+
+1. Koog: [03-01-koog.md](./03-01-koog.md)
+1. Exercise: Koog + Compose Multiplatform application: [03-02-koog-compose-exercise.md](./03-02-koog-compose-exercise.md)
+1. (Bonus) Languchain4j: 
 
 ## Part 4 - backend development
 
-- Expected duration: 30 minutes
+- Estimated duration: 30 minutes
 - Recommended IDE: IntelliJ IDEA (Community or Ultimate)
 
 Kotlin supports JVM and JS frameworks.
 In addition to that, also has Kotlin exclusive ones (that usually run on the JVM or native).
 
+We'll start with JVM frameworks because they are very popular, then Kotlin native ones.
+Finally, we leave JS runtimes as a bonus since it is not as straightforward as the others.
+
+1. JVM frameworks: [04-01-backend-jvm.md](./04-01-backend-jvm.md)
+1. Kotlin native frameworks: [04-02-backend-kt.md](./04-02-backend-kt.md)
+1. (Bonus) JS frameworks: [04-03-backend-js.md](./04-03-backend-js.md)
+
 ## Part 5 - Datascience
 
-- Expected duration: 30 minutes
+- Estimated duration: 30 minutes
 - Recommended IDE: IntelliJ IDEA (Community or Ultimate)
 
 With its support of Jupyter notebooks and availability of JVM (such as Spark) and Kotlin native analysis and plotting
