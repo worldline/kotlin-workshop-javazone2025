@@ -18,7 +18,10 @@ So, let's get started!
 ## Preparation
 
 1. Clone this repository `git clone https://github.com/worldline/kotlin-workshop-javazone2025.git`
-1. IntelliJ IDEA Community or Ultimate (preferably through [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/)) and these plugins: Android and Kotlin Multiplatform (the latter is only available on macOS currently).
+1. Android Studio and these plugins
+    - Kotlin Multiplatform for macOS users and [Compose Multiplatform for Desktop IDE Support](https://plugins.jetbrains.com/plugin/16541-compose-multiplatform-for-desktop-ide-support) for Windows and Linux.
+    - Kotlin notebooks
+1. For macOS users: XCode
 1. [gradle](https://gradle.org/install/) (on Windows, you can use [Scoop](https://scoop.sh/) or [Chocolatey](https://chocolatey.org/install))
 
 ## Part 1 - Tour of the Kotlin language
@@ -53,7 +56,6 @@ Thanks to Kotlin DSL capabilities, UIs can be described in a declarative way, si
 
 In this part, we'll focus on Compose multiplatform, but there is also a bonus section on JavaFX.
 
-
 1. Compose Multiplatform: [03-01-compose.md](02-01-compose.md)
 1. (Bonus) JavaFx with Kotlin: [03-02-javafx.md](02-02-javafx.md)
 
@@ -69,7 +71,7 @@ We'll focus on Koog in this part since it support the Web and Desktop targets, m
 
 1. Koog: [03-01-koog.md](./03-01-koog.md)
 1. Exercise: Koog + Compose Multiplatform application: [03-02-koog-compose-exercise.md](./03-02-koog-compose-exercise.md)
-1. (Bonus) Languchain4j: 
+1. (Bonus) Languchain4j:
 
 ## Part 4 - backend development
 
@@ -93,4 +95,3 @@ Finally, we leave JS runtimes as a bonus since it is not as straightforward as t
 
 With its support of Jupyter notebooks and availability of JVM (such as Spark) and Kotlin native analysis and plotting
 libraries, Kotlin is a great language for data science.
-
