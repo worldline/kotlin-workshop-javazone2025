@@ -46,7 +46,7 @@ fun MyComposable() {
 
 ## Analyzing the code
 
-Let's analyse the `App` function:
+Let's analyze the `App` function:
 
 ```kotlin
 @Composable // 1
@@ -160,7 +160,11 @@ While the project loads, let's analyze its structure:
   - **composeApp/build.gradle.kts**: the Gradle build file for the Compose application. It contains common build configuration as well as platform specific ones.
   - The **commonMain** folder, **commonTest** folder where we want to put most of our code, files and dependencies.
 
-When the project is fully loaded, let's run one of the available targets: Android, jvm (desktop), wasmJs (the browser) or iOS (only possible on macOS).
+When the project is fully loaded in Android Studio, we can note that the project structure is presented differently in two groups: composeApp (which contains the source sets + resources) and the Gradle script (which also contains the version catalog).
+
+![Android stucture](./assets/android-project-structure.png)
+
+Let's run one of the available targets: Android, jvm (desktop), wasmJs (the browser) or iOS (only possible on macOS).
 This illustration below show all what we see when we run all the targets together.
 From left to right: wasmJs, jvm, iOS and finally Android.
 
@@ -168,7 +172,85 @@ From left to right: wasmJs, jvm, iOS and finally Android.
 
 During development, the desktop target is the best one to use, because it is the fastest to run and supports hot reload (when code changes the running app reloads near-instantly).
 
+## PW: present a list fetched from the internet
+
+In this practical work, we will fetch a list of items from a REST API and display it in our Compose UI.
+We will use [ktor client](https://ktor.io/docs/client-create-new-application.html) as our multiplatform HTTP client.
+
+- Reference the library and its dependencies in the version catalog
+
+  ```toml
+  [versions]
+  # other versions
+  ktor = "3.2.3"
+
+  [libraries]
+  # other libraries
+  ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+  ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+  ktor-client-cio= {module ="io.ktor:ktor-client-cio", version.ref = "ktor"}
+  ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+  kotlin-serialization = {module = "io.ktor:ktor-serialization-kotlinx-json", version.ref="ktor"}
+  ktor-client-content-negotiation = {module = "io.ktor:ktor-client-content-negotiation", version.ref= "ktor"}
+
+  [bundles]
+  ktor = ["ktor-client-core", "ktor-client-content-negotiation"]
+
+  [plugins]
+  # other plugins
+  kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+  ```
+
+- In the root **build.gradle.kts**, load the serialization plugin.
+
+    ```kotlin
+    plugins {
+      // other plugins
+      alias(libs.plugins.kotlinSerialization) apply false
+    }
+    ```
+
+- In **composeApp/build.gradle.kts**, apply the serialization plugin .
+
+  ```kotlin
+  plugins {
+    // other plugins
+    alias(libs.plugins.kotlinSerialization)
+  }
+  ```
+
+- And add the dependencies for ktor in the `kotlin -> sourceSets` part:
+
+  ```kotlin
+  kotlin {
+    // other options
+    sourceSets {
+      androidMain.dependencies {
+        // other dependencies
+        implementation(libs.ktor.client.android)
+      }
+      commonMain.dependencies {
+        // other dependencies
+        implementation(libs.bundles.ktor)
+        implementation(libs.ktor.client.content.negotiation)
+        implementation(libs.kotlin.serialization)
+      }
+      jvmMain.dependencies {
+        // other dependencies
+        implementation(libs.ktor.client.cio)
+      }
+      iosMain.dependencies {
+        implementation(libs.ktor.client.darwin)
+      }
+    }
+  }
+  ```
+
 ## Going further
 
 Compose Multiplatform provides a [great documentation](https://www.jetbrains.com/compose-multiplatform/) to continue learning.
 In addition to that, since Compose Multiplatform is based on Jetpack Compose, you can even refer to [Jetpack Compose documentation](https://developer.android.com/develop/ui/compose/documentation) to go further.
+
+## Links and references
+
+- [Kotlin Compose Multiplatform: Integrating Ktor with Search for Android, iOS and Desktop](https://blog.stackademic.com/kotlin-compose-multiplatform-integrating-ktor-with-search-for-android-ios-and-desktop-d31b9d1bd0e2)
