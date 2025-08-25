@@ -160,6 +160,14 @@ While the project loads, let's analyze its structure:
   - **composeApp/build.gradle.kts**: the Gradle build file for the Compose application. It contains common build configuration as well as platform specific ones.
   - The **commonMain** folder, **commonTest** folder where we want to put most of our code, files and dependencies.
 
+When the project is fully loaded, let's run one of the available targets: Android, jvm (desktop), wasmJs (the browser) or iOS (only possible on macOS).
+This illustration below show all what we see when we run all the targets together.
+From left to right: wasmJs, jvm, iOS and finally Android.
+
+![Compose multiplatform apps](./assets/compose-multiplatform-apps.png)
+
+During development, the desktop target is the best one to use, because it is the fastest to run and supports hot reload (when code changes the running app reloads near-instantly).
+
 ## Going further
 
 Compose Multiplatform provides a [great documentation](https://www.jetbrains.com/compose-multiplatform/) to continue learning.
