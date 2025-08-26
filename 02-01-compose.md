@@ -297,7 +297,7 @@ Congrats, we now have a cross-platform HTTP client that we can use.
 
 In the previous part, we didn't parse the response body and just processed it as a String.
 Let's parse the JSON response into data classes.
-Try to guess the data classes we need.
+Try to guess the data classes we need before looking at a solution below.
 
 ```kotlin
 @Serializable
@@ -317,11 +317,72 @@ data class Country(
 
 The serializable annotation is important because it allows ktor to introspect the data classes and automatically serialize/deserialize them to/from JSON.
 
+Next, we need to tell ktor that it needs to parse the body as a list of countries (in Kotlin, it is this type `List<Country>`).
+There are many ways to do it depending on where we provide this information; at variable declaration, at the call site, or as a return value of a function.
+Let's see some possible solutions:
+
+- At the call site; just replace this line `val body = response.body<String>()` with the following one.
+
+  ```kotlin
+  val body = response.body<List<Country>>()
+  ```
+
+- At variable declaration: in this case, Kotlin can infer the type from the assignment. Replace this line `val body = response.body<String>()` with this line:
+
+  ```kotlin
+  val response: List<Country> = httpClient.get("https://restcountries.com/v3.1/all?fields=name,flag,flags,capital")
+  ```
+
+- As a return value of a function; is simialr to the previous solution but the type is inferred from the return value instead of being explicitly declared. Replace this code:
+
+  ```kotlin
+  LaunchedEffect(Unit) {
+    val response = httpClient.get("https://restcountries.com/v3.1/all?fields=name,flag,flags,capital")
+    val body = response.body<String>()
+    println(body)
+  }
+  ```
+
+  with this one:
+
+  ```kotlin
+  suspend fun fetchCountries(): List<Country> {
+    val response = httpClient.get("https://restcountries.com/v3.1/all?fields=name,flag,flags,capital")
+    return response.body() // This will be parsed to List<Country> and is inferred from the return type
+  }
+
+  LaunchedEffect(Unit) {
+    val countries = fetchCountries()
+    println(countries)
+  }
+  ```
+
+- Run the app again to check that it still prints the list of countries.
+
+### Part 3 - exercise
+
+Using the previous exercises as a reference, display the list of countries in a `LazyList`.
+Also, display the flags using both the emoji and the svg.
+For the latter, the [coil](https://coil-kt.github.io/coil/) library provides access to the `AsyncImage` composable, which loads an image from a url.
+
+⚠️ the emojis may not show correctly on winodws.
+
+![Countries app screenshot](./assets/countries.png)
+
+### Solutions
+
+The solutions of the different steps are available the [02-frontend](./02-frontend/) folder.
+
 ## Going further
 
-Compose Multiplatform provides a [great documentation](https://www.jetbrains.com/compose-multiplatform/) to continue learning.
-In addition to that, since Compose Multiplatform is based on Jetpack Compose, you can even refer to [Jetpack Compose documentation](https://developer.android.com/develop/ui/compose/documentation) to go further.
+We just scratched the surface of what is possible with Compose Multiplatform.
+Here are some tracks to go further.
+
+- The list of [material3 components](https://kotlinlang.org/api/compose-multiplatform/material3/) supported by Compose multiplatform.
+- Jetpack Compose provides [architecture guidelines](https://developer.android.com/topic/architecture/recommendations) an official code architure to make the code more maintainable.
+- JetPack compose documentation can also serve as a documentation for compose multiplatform [as explained in this page](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-multiplatform-and-jetpack-compose.html). This means, that we can follow the [official Jetpack compose tutorial](https://developer.android.com/develop/ui/compose/tutorial) which also applies mostly to compose multiplatform.
 
 ## Links and references
+
 
 - [Kotlin Compose Multiplatform: Integrating Ktor with Search for Android, iOS and Desktop](https://blog.stackademic.com/kotlin-compose-multiplatform-integrating-ktor-with-search-for-android-ios-and-desktop-d31b9d1bd0e2)
