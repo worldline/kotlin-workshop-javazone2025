@@ -179,6 +179,8 @@ We will use [ktor client](https://ktor.io/docs/client-create-new-application.htm
 We will use [restcountries.com](https://restcountries.com/) free and public REST API.
 Particulartly, we'll call [https://restcountries.com/v3.1/all?fields=name,flag,flags,capital](https://restcountries.com/v3.1/all?fields=name,flag,flags,capital), to fetch countries with their names, flags and capitals.
 
+### Part 1: setup ktor client
+
 - Continue with the previous compose mutltiplatform project or create a new one.
 - Open the project and reference the ktor library and its dependencies in the version catalog.
   - The `bundle` section allow to group dependencies in a single alias.
@@ -255,7 +257,65 @@ Particulartly, we'll call [https://restcountries.com/v3.1/all?fields=name,flag,f
   }
   ```
 
--
+- Let's check if the setup is correct. In `commonMain/kotlin/.../App.kt`, add the following global variable that contains a ktor client configured with a JSON parser.
+
+  ```kotlin
+  val httpClient = HttpClient {
+    install(ContentNegotiation) {
+      json(json = Json { ignoreUnknownKeys = true }, contentType = ContentType.Any)
+    }
+  }
+  ```
+
+- Next, call the get method on the httpClient instance. Since the get method is a suspending function, it needs to be called from a coroutine or another suspending function (this concept is similar to async/await in JavaScript). Compose provides many tools to work with coroutines. One of them is the `LaunchedEffect` composable that runs some code, within a coroutine, when the parent composable is first launched.
+
+  ```kotlin
+  fun App() {
+    LaunchedEffect(Unit) {
+      val response = httpClient.get("https://restcountries.com/v3.1/all?fields=name,flag,flags,capital")
+      val body = response.body<String>()
+      println(body)
+    }
+    // remainder of the code
+  }
+  ```
+
+- Run the app on desktop with `./gradlew run`. You should see in the terminal the JSON response from the REST API.
+
+  ```txt
+  [{"flags":{"png":"https://flagcdn.com/w320/tn.png",...
+  ```
+
+- Just to be sure, you can run the app in other targets:
+  - Web: `./gradlew wasmJsBrowserDevelopmentRun` or via the run button in the IDE
+  - Android via the run button in the IDE
+  - iOS via the run button in the IDE
+
+Congrats, we now have a cross-platform HTTP client that we can use.
+
+### Part 2 - JSON serialization
+
+In the previous part, we didn't parse the response body and just processed it as a String.
+Let's parse the JSON response into data classes.
+Try to guess the data classes we need.
+
+```kotlin
+@Serializable
+data class CountryFlagCatalog(val png: String, val svg: String, val alt: String)
+
+@Serializable
+data class CountryName(val common: String, val official: String)
+
+@Serializable
+data class Country(
+  val name: CountryName,
+  val flag: String,
+  val flags: CountryFlagCatalog,
+  val capital: List<String>
+)
+```
+
+The serializable annotation is important because it allows ktor to introspect the data classes and automatically serialize/deserialize them to/from JSON.
 
 ## Going further
 
