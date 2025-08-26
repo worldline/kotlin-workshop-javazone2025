@@ -176,8 +176,14 @@ During development, the desktop target is the best one to use, because it is the
 
 In this practical work, we will fetch a list of items from a REST API and display it in our Compose UI.
 We will use [ktor client](https://ktor.io/docs/client-create-new-application.html) as our multiplatform HTTP client.
+We will use [restcountries.com](https://restcountries.com/) free and public REST API.
+Particulartly, we'll call [https://restcountries.com/v3.1/all?fields=name,flag,flags,capital](https://restcountries.com/v3.1/all?fields=name,flag,flags,capital), to fetch countries with their names, flags and capitals.
 
-- Reference the library and its dependencies in the version catalog
+- Continue with the previous compose mutltiplatform project or create a new one.
+- Open the project and reference the ktor library and its dependencies in the version catalog.
+  - The `bundle` section allow to group dependencies in a single alias.
+  - `` is used to enable JSON serialisation.
+  - ``,``
 
   ```toml
   [versions]
@@ -242,9 +248,14 @@ We will use [ktor client](https://ktor.io/docs/client-create-new-application.htm
       iosMain.dependencies {
         implementation(libs.ktor.client.darwin)
       }
+      wasmJsMain.dependencies {
+        implementation(libs.ktor.client.js)
+      }
     }
   }
   ```
+
+-
 
 ## Going further
 
