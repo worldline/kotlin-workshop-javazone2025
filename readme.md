@@ -21,8 +21,8 @@ So, let's get started!
 
 1. Clone this repository `git clone https://github.com/worldline/kotlin-workshop-javazone2025.git`
 1. If you want to use Android Studio, install these plugins
-  - Kotlin Multiplatform for macOS users and [Compose Multiplatform for Desktop IDE Support](https://plugins.jetbrains.com/plugin/16541-compose-multiplatform-for-desktop-ide-support) for Windows and Linux.
-  - Kotlin notebooks
+    - Kotlin Multiplatform for macOS users and [Compose Multiplatform for Desktop IDE Support](https://plugins.jetbrains.com/plugin/16541-compose-multiplatform-for-desktop-ide-support) for Windows and Linux.
+    - Kotlin notebooks
 1. If you want to use IntelliJ IDEA, install the Android plugin as well
 1. Optional plugins for both
   IDEs: [Indent rainbow](https://plugins.jetbrains.com/plugin/13308-indent-rainbow), [Rainbow Brackets Lite - Free and OpenSource](https://plugins.jetbrains.com/plugin/20710-rainbow-brackets-lite--free-and-opensource)
