@@ -380,9 +380,12 @@ The solutions of the different steps are available the [02-frontend](./02-fronte
 We just scratched the surface of what is possible with Compose Multiplatform.
 Here are some tracks to go further.
 
+- The Jetpack compose documentation is a great resource to learn more about Compose Multiplatform.
+  - The [official Jetpack compose tutorial](https://developer.android.com/develop/ui/compose/tutorial) is a great starting point for beginners.
+  - To complement this, [page explains the difference between Compose and Jetpack Compose](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-multiplatform-and-jetpack-compose.html).
+  - [Architecture guidelines](https://developer.android.com/topic/architecture/recommendations) to make the code more maintainable.
 - The list of [material3 components](https://kotlinlang.org/api/compose-multiplatform/material3/) supported by Compose multiplatform.
-- Jetpack Compose provides [architecture guidelines](https://developer.android.com/topic/architecture/recommendations) an official code architure to make the code more maintainable.
-- JetPack compose documentation can also serve as a documentation for compose multiplatform [as explained in this page](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-multiplatform-and-jetpack-compose.html). This means, that we can follow the [official Jetpack compose tutorial](https://developer.android.com/develop/ui/compose/tutorial) which also applies mostly to compose multiplatform.
+- [m3.material.io](https://m3.material.io/) is a great reference about material design in genreal.
 
 ## Links and references
 
