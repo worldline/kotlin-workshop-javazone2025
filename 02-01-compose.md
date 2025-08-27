@@ -166,7 +166,14 @@ When the project is fully loaded in Android Studio, we can note that the project
 
 ![Android stucture](./assets/android-project-structure.png)
 
-Let's run one of the available targets: Android, jvm (desktop), wasmJs (the browser) or iOS (only possible on macOS).
+Let's run one of the available targets: 
+
+- Desktop via the terminal with `./gradlew run` or via the run button in the IDE
+- Web via the terminal with `./gradlew wasmJsBrowserDevelopmentRun` or via the run button in the IDE
+- Android via the run button in the IDE
+- iOS via the run button in the IDE
+
+
 This illustration below show all what we see when we run all the targets together.
 From left to right: wasmJs, jvm, iOS and finally Android.
 
@@ -186,8 +193,8 @@ Particulartly, we'll call [https://restcountries.com/v3.1/all?fields=name,flag,f
 - Continue with the previous compose mutltiplatform project or create a new one.
 - Open the project and reference the ktor library and its dependencies in the version catalog.
   - The `bundle` section allow to group dependencies in a single alias.
-  - `` is used to enable JSON serialisation.
-  - ``,``
+  - `kotlin-serialization` dependency is used for JSON serialisation.
+  - `ktor-client-cio`, `ktor-client-js`, `ktor-client-darwin`, `ktor-client-android` adds specific platform implementations of the ktor client.
 
   ```toml
   [versions]
@@ -198,8 +205,9 @@ Particulartly, we'll call [https://restcountries.com/v3.1/all?fields=name,flag,f
   # other libraries
   ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
   ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
-  ktor-client-cio= {module ="io.ktor:ktor-client-cio", version.ref = "ktor"}
+  ktor-client-cio = {module ="io.ktor:ktor-client-cio", version.ref = "ktor"}
   ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+  ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
   kotlin-serialization = {module = "io.ktor:ktor-serialization-kotlinx-json", version.ref="ktor"}
   ktor-client-content-negotiation = {module = "io.ktor:ktor-client-content-negotiation", version.ref= "ktor"}
 
