@@ -8,8 +8,10 @@ Indeed, Kotlin can taget Android, iOS, Web, Desktop and Server.
 ![kmp](assets/kmp.png)
 
 We will see this through different applications types: frontend, backend, AI-powered and data science.
-That's why the workshop is divided into 5 parts, where part 1 is a qui ck tour of the Kotlin language and the other parts are different application types.
-Is it recommended to follow part 1 first and you can follow the other ones in any order, but you can stick to the agenda if you want to experiment first aspects where multiplatform shines the most.
+That's why the workshop is divided into 5 parts, where part 1 is a qui ck tour of the Kotlin language and the other
+parts are different application types.
+Is it recommended to follow part 1 first and you can follow the other ones in any order, but you can stick to the agenda
+if you want to experiment first aspects where multiplatform shines the most.
 
 We'll be thus using different frameworks and libraries.
 This workshop does not aim to teach all these in detail, but rather to give you a quick overview of what is possible.
@@ -19,10 +21,13 @@ So, let's get started!
 
 1. Clone this repository `git clone https://github.com/worldline/kotlin-workshop-javazone2025.git`
 1. Android Studio and these plugins
-    - Kotlin Multiplatform for macOS users and [Compose Multiplatform for Desktop IDE Support](https://plugins.jetbrains.com/plugin/16541-compose-multiplatform-for-desktop-ide-support) for Windows and Linux.
-    - Kotlin notebooks
+  - Kotlin Multiplatform for macOS users
+    and [Compose Multiplatform for Desktop IDE Support](https://plugins.jetbrains.com/plugin/16541-compose-multiplatform-for-desktop-ide-support)
+    for Windows and Linux.
+  - Kotlin notebooks
 1. For macOS users: XCode
-1. [gradle](https://gradle.org/install/) (on Windows, you can use [Scoop](https://scoop.sh/) or [Chocolatey](https://chocolatey.org/install))
+1. [gradle](https://gradle.org/install/) (on Windows, you can use [Scoop](https://scoop.sh/)
+   or [Chocolatey](https://chocolatey.org/install))
 
 ## Part 1 - Tour of the Kotlin language
 
@@ -37,7 +42,7 @@ When needed, you can go back to this section to check how some language feature 
 
 1. Open this notebook to try some prominent Kotlin feature [01-01-kotlin-tour.ipynb](./01-01-kotlin-tour.ipynb)
 1. Next, let's do some exercises that are listed in the file [01-02-exercises.ipynb](./01-02-exercises.ipynb)
-    - The solutions are available in [01-02s-solutions.ipynb](./01-02s-solutions.ipynb)
+  - The solutions are available in [01-02s-solutions.ipynb](./01-02s-solutions.ipynb)
 1. Finally, let's quickly see how OOP is done in Kotlin: [01-03-oop.ipynb](./01-03-oop.ipynb)
 1. (Optional) For more features, please open this
    file [01-04-more-language-features.ipynb](./01-04-more-language-features.ipynb)
@@ -51,7 +56,8 @@ When needed, you can go back to this section to check how some language feature 
 
 Kotlin supports existing JS and JVM UI frameworks thanks to its multiplatform capabilities.
 Meaning that we can code ReactJS or JavaFX applications using Kotlin.
-It also has its own UI framework called Compose Multiplatform, which supports desktop (Windows, MacOS, Linux), web and mobile (Android and iOS), making it a *write once, run anywhere* framework.
+It also has its own UI framework called Compose Multiplatform, which supports desktop (Windows, MacOS, Linux), web and
+mobile (Android and iOS), making it a *write once, run anywhere* framework.
 Thanks to Kotlin DSL capabilities, UIs can be described in a declarative way, similar to HTML.
 
 In this part, we'll focus on Compose multiplatform, but there is also a bonus section on JavaFX.
@@ -67,10 +73,12 @@ In this part, we'll focus on Compose multiplatform, but there is also a bonus se
 After the AI boom, many AI libraries have been created.
 Kotlin supports the famous JVM langchain4j and has its own AI library called Koog.
 
-We'll focus on Koog in this part since it support the Web and Desktop targets, making it a nice showcase for **write once run everywhere**.
+We'll focus on Koog in this part since it support the Web and Desktop targets, making it a nice showcase for **write
+once run everywhere**.
 
-1. Koog: [03-01-koog.md](./03-01-koog.md)
-1. Exercise: Koog + Compose Multiplatform application: [03-02-koog-compose-exercise.md](./03-02-koog-compose-exercise.md)
+1. Koog: [03-01-koog.ipynb](./03-01-koog.ipynb)
+1. Exercise: Koog + Compose Multiplatform
+   application: [03-02-koog-compose-exercise.md](./03-02-koog-compose-exercise.md)
 1. (Bonus) Languchain4j:
 
 ## Part 4 - backend development

@@ -1,10 +1,6 @@
-# Application that uses Koog and Compose
+# Exercice: country info with AI
 
-Since Koog is currently compatible with Desktop and Web, let's create an AI-powered application that runs on both
-platforms.
+Let's add a features that shows information about a country when the user inputs its name.
+Since Koog only supports JVM and JS, we'll provide this feature only for the desktop and web targets.
+We can use Kotlin"s
 
-1. Open [The KMP wizard](https://kmp.jetbrains.com/) and generate a desktop + web app with sharedUI.
-    - Project name: *Smart geometry*
-    - Project ID: *no.javazone.smartgeometry*
-1. Open the project in IntelliJ IDEA.
-1. 
