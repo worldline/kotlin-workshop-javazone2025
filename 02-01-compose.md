@@ -88,7 +88,7 @@ fun App() { // 2
 1. Add a text that displays `JavaZone 2025` above the button.
 2. Make the counter start at `2025`
 
-## List + Changing the button behaviour
+## Practical work: List + Changing the button behaviour
 
 Let's add a list and change the button behaviour to add an item to the list instead of changing the greeting text.
 
@@ -134,6 +134,8 @@ Let's add a list and change the button behaviour to add an item to the list inst
       import androidx.compose.foundation.layout.padding
       import androidx.compose.ui.unit.dp
       ```
+
+A solution is [available here](https://pl.kotl.in/gafzm3lxw)
 
 ## Local development
 
