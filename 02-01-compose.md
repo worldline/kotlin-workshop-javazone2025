@@ -12,7 +12,7 @@ components in the browser thanks to the support of the web platform.
 
 Let's start by running our first Compose Multiplatform application in the Kotlin playground:
 
-1. Please open [this link to load a sample app](https://pl.kotl.in/gafzm3lxw).
+1. Please open [this link to load a sample app](https://pl.kotl.in/20EA85ZqX).
 1. Click on the "Run" button to execute the code.
 1. You should see a simple UI with a button. Click on the button once and then click it another time.
 1. Read the code and analyze how the components are structured.
