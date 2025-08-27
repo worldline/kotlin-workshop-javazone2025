@@ -20,11 +20,15 @@ So, let's get started!
 ## Preparation
 
 1. Clone this repository `git clone https://github.com/worldline/kotlin-workshop-javazone2025.git`
-1. Android Studio and these plugins
+1. If you want to use Android Studio, install these plugins
   - Kotlin Multiplatform for macOS users
     and [Compose Multiplatform for Desktop IDE Support](https://plugins.jetbrains.com/plugin/16541-compose-multiplatform-for-desktop-ide-support)
     for Windows and Linux.
   - Kotlin notebooks
+1. If you want to use IntelliJ IDEA, install the Android plugin as well
+1. Optioanl plugins for both
+   IDEs: [Indent rainbow](https://plugins.jetbrains.com/plugin/13308-indent-rainbow), [Rainbow Brackets Lite - Free and OpenSource
+   ](https://plugins.jetbrains.com/plugin/20710-rainbow-brackets-lite--free-and-opensource)
 1. For macOS users: XCode
 1. [gradle](https://gradle.org/install/) (on Windows, you can use [Scoop](https://scoop.sh/)
    or [Chocolatey](https://chocolatey.org/install))
@@ -42,7 +46,9 @@ When needed, you can go back to this section to check how some language feature 
 
 1. Open this notebook to try some prominent Kotlin feature [01-01-kotlin-tour.ipynb](./01-01-kotlin-tour.ipynb)
 1. Next, let's do some exercises that are listed in the file [01-02-exercises.ipynb](./01-02-exercises.ipynb)
-  - The solutions are available in [01-02s-solutions.ipynb](./01-02s-solutions.ipynb)
+
+- The solutions are available in [01-02s-solutions.ipynb](./01-02s-solutions.ipynb)
+
 1. Finally, let's quickly see how OOP is done in Kotlin: [01-03-oop.ipynb](./01-03-oop.ipynb)
 1. (Optional) For more features, please open this
    file [01-04-more-language-features.ipynb](./01-04-more-language-features.ipynb)
