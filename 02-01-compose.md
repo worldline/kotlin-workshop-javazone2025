@@ -83,12 +83,12 @@ fun App() { // 2
 10. `AnimatedVisibility` is a composable function that controls the visibility of its child based on the `showImage` state. If `showImage` is `true`, the child will be visible, otherwise it will be hidden.
 11. Inside the `AnimatedVisibility`, we display the `counter` value as a `Text` composable function.
 
-## Exercises
+### Exercises
 
 1. Add a text that displays `JavaZone 2025` above the button.
 2. Make the counter start at `2025`
 
-## Practical work: List + Changing the button behaviour
+### Practical work: List + Changing the button behaviour
 
 Let's add a list and change the button behaviour to add an item to the list instead of changing the greeting text.
 
@@ -385,6 +385,5 @@ Here are some tracks to go further.
 - JetPack compose documentation can also serve as a documentation for compose multiplatform [as explained in this page](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-multiplatform-and-jetpack-compose.html). This means, that we can follow the [official Jetpack compose tutorial](https://developer.android.com/develop/ui/compose/tutorial) which also applies mostly to compose multiplatform.
 
 ## Links and references
-
 
 - [Kotlin Compose Multiplatform: Integrating Ktor with Search for Android, iOS and Desktop](https://blog.stackademic.com/kotlin-compose-multiplatform-integrating-ktor-with-search-for-android-ios-and-desktop-d31b9d1bd0e2)
