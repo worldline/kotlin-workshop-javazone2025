@@ -373,7 +373,7 @@ Let's see some possible solutions:
 
 ### Part 3 - exercise
 
-Using the previous exercises as a reference, display the list of countries in a `LazyList`.
+Using the previous exercises as a reference, display the list of countries in a `LazyColumn`.
 Also, display the flags using both the emoji and the svg.
 For the latter, the [coil](https://coil-kt.github.io/coil/) library provides access to the `AsyncImage` composable, which loads an image from a url.
 
