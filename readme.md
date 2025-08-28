@@ -72,7 +72,7 @@ In this part, we'll focus on Compose Multiplatform, but there is also a bonus se
 - Recommended IDE: IntelliJ IDEA (Community or Ultimate)
 
 After the AI boom, many AI libraries have been created.
-Kotlin supports the famous JVM library langchain4j and has its own AI library called Koog.
+Kotlin supports the famous JVM library LangChain4j and has its own AI library called Koog.
 
 We'll focus on Koog in this part since it supports the Web and Desktop targets, making it a nice showcase for **write once, run everywhere**.
 
