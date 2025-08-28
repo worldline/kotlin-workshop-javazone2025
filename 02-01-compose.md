@@ -190,11 +190,11 @@ Particulartly, we'll call [https://restcountries.com/v3.1/all?fields=name,flag,f
 
 ### Part 1: setup ktor client
 
-- Continue with the previous compose mutltiplatform project or create a new one.
-- Open the project and reference the ktor library and its dependencies in the version catalog.
+- Continue with the previous compose multiplatform project or create a new one.
+- Open the project and reference the ktor library and its dependencies in the version catalog located at *gradle/libs.versions.toml*.
   - The `bundle` section allow to group dependencies in a single alias.
   - `kotlin-serialization` dependency is used for JSON serialisation.
-  - `ktor-client-cio`, `ktor-client-js`, `ktor-client-darwin`, `ktor-client-android` adds specific platform implementations of the ktor client.
+  - `ktor-client-cio`, `ktor-client-js`, `ktor-client-darwin`, `ktor-client-android` add specific platform implementations of the ktor client.
 
   ```toml
   [versions]
