@@ -340,7 +340,7 @@ Let's see some possible solutions:
 - At variable declaration: in this case, Kotlin can infer the type from the assignment. Replace this line `val body = response.body<String>()` with this line:
 
   ```kotlin
-  val response: List<Country> = httpClient.get("https://restcountries.com/v3.1/all?fields=name,flag,flags,capital")
+  val countries: List<Country> = response.body()
   ```
 
 - As a return value of a function; is simialr to the previous solution but the type is inferred from the return value instead of being explicitly declared. Replace this code:
