@@ -77,7 +77,6 @@ fun CountryItem(country: Country) {
       )
     }
   }
-
 }
 
 @Preview

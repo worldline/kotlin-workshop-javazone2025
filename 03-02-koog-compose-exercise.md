@@ -1,6 +1,7 @@
-# Exercice: country info with AI
+# Exercise: country info with AI
 
-Let's add a features that shows information about a country when the user inputs its name.
-Since Koog only supports JVM and JS, we'll provide this feature only for the desktop and web targets.
-We can use Kotlin"s
+Add a feature to the app developed in Compose in Step 2 which relies on LLMs.
+For example, you could use an LLM to provide information about a country when the user selects it in the list.
+The information will be shown in a `Text` above the `LazyColumn`.
 
+You can continue with the app that you worked on, or start from a solution available here: [02-frontend/compose-03-country-list-final-step](./02-frontend/compose-03-country-list-final-step/)
