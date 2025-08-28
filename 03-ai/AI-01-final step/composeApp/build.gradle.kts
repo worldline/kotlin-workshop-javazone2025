@@ -59,7 +59,6 @@ kotlin {
       implementation(compose.preview)
       implementation(libs.androidx.activity.compose)
       implementation(libs.ktor.client.android)
-      implementation(libs.koog.agents)
     }
     commonMain.dependencies {
       implementation(compose.runtime)
@@ -82,14 +81,22 @@ kotlin {
       implementation(compose.desktop.currentOs)
       implementation(libs.kotlinx.coroutinesSwing)
       implementation(libs.ktor.client.cio)
-      implementation(libs.koog.agents)
     }
     iosMain.dependencies {
       implementation(libs.ktor.client.darwin)
     }
     wasmJsMain.dependencies {
       implementation(libs.ktor.client.js)
-      implementation(libs.koog.agents)
+    }
+
+    val androidJvmWasmMain by creating {
+      dependsOn(commonMain.get())
+      androidMain.get().dependsOn(this)
+      wasmJsMain.get().dependsOn(this)
+      jvmMain.get().dependsOn(this)
+      dependencies {
+        implementation(libs.koog.agents)
+      }
     }
   }
 }

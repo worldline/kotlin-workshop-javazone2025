@@ -66,9 +66,7 @@ fun CountryList() {
     LazyColumn {
       items(countries) { country ->
         Row {
-          Button(onClick = {
-            selectedCountryName = country.name.official
-          }) {
+          Button(onClick = { selectedCountryName = country.name.official }) {
             Text("Select")
           }
           CountryItem(country)
