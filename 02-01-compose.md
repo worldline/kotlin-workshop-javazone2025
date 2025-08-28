@@ -388,6 +388,8 @@ Please find some notes and tips to help you on the exercise:
   coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil"}
   coil-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil"}
   coil-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil" }
+  [bundles]
+  coil = ["coil-compose", "coil-ktor3", "coil-svg"]
   ```
 
 - ⚠️ the emojis may not show correctly on Windows.
