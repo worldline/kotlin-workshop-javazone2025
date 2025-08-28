@@ -36,7 +36,6 @@ So, let's get started!
 
 Extra time (if any):
 
-
 1. Ktor: [04-02-backend-kt.md](./04-02-backend-kt.md)
 2. Data Science with Kotlin: [05-01-datascience.ipynb](./05-01-datascience.ipynb) and exercises: [05-02-datascience-exercises.ipynb](./05-02-datascience-exercises.ipynb)
 
