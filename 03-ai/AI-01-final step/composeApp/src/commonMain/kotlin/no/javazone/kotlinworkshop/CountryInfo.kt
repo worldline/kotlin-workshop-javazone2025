@@ -9,12 +9,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+const val systemPrompt =
+  "You give information about a given country. Please answer in concise manner that fits in one line."
+
 expect suspend fun getCountryInfo(countryName: String): String
 
 @Composable
 fun CountryInfo(countryName: String) {
   var countryInfo by remember { mutableStateOf("") }
-  LaunchedEffect(Unit) {
+  LaunchedEffect(countryName) {
+    countryInfo = ""
     if (countryName.isNotBlank()) {
       countryInfo = getCountryInfo(countryName)
     }
