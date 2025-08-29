@@ -84,19 +84,6 @@ The default one that is more familiar with Java style and the DSL one which is m
 
   - It is possible to change the exception message with the `@ControllerAdvice` annotation. 
   You can see an [example here](https://spring.io/guides/tutorials/rest/).
-
-- Before running the project, we need to add a plugin that allows Kotlin classes to generate a default constructor: `id("org.jetbrains.kotlin.plugin.jpa") version "1.8.10"`. The plugins should look as follows:
-
-  ```kotlin
-  plugins {
-    id("org.jetbrains.kotlin.plugin.jpa") version "1.8.10"
-    id("org.springframework.boot") version "3.0.4"
-    id("io.spring.dependency-management") version "1.1.0"
-    kotlin("jvm") version "1.8.10"
-    kotlin("plugin.spring") version "1.8.10"
-  }
-  ```
-
 - As an exercise, implement these endpoints: POST a single product, DELETE by id (`/product/{id}`), and GET by id (`/product/{id}`).
   - Hint: `ProductController` already provides the necessary methods.
 - If the server did not hot reload, restart it.
