@@ -142,6 +142,26 @@ Here the main steps for the practical work:
   Finally add the staticResources line in the routing configuration.
 - Once the server is ready, run `./gradlew buildImage` to create a docker image.
   - This command may fail if you don't disable configuration cache in the by setting the line `org.gradle.configuration-cache=false`.
+  - You may need prior login to docker hub `docker login docker.io` or `podman login docker.io`.
+  - On macOS, you may need to install `docker-credential-helper` with `brew install docker-credential-helper`
+- If you encounter issues with the above task, you can try a more manual approach.
+- If you use podamn, you can also follow this approach proposed by [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/podman-ktor-deploy)
+  - With these commands to build and deploy: `podman build --platform linux/amd64 --tag countryai:v1 .`, and `podman push countryai:v1 registry/countryai:v1`
+- Once the app is built, you can publish it manually or with the `publishImage` task. The latter can be configured in the `build.gradle.kts` file as follows:
+
+  ```kotlin
+  ktor {
+    docker {
+      externalRegistry.set(
+        io.ktor.plugin.features.DockerImageRegistry.dockerHub(
+          appName = provider { "image-name" },
+          username = providers.environmentVariable("CONTAINER_REGISTRY_USERNAME"),
+          password = providers.environmentVariable("CONTAINER_REGISTRY_PASSWORD")
+        )
+      )
+    }
+  }
+  ```
 
 ## References
 

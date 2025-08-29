@@ -23,6 +23,9 @@ dependencies {
 }
 
 ktor {
+  fatJar {
+    archiveFileName.set("fat.jar")
+  }
   docker {
     externalRegistry.set(
       io.ktor.plugin.features.DockerImageRegistry.dockerHub(
