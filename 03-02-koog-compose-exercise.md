@@ -59,7 +59,7 @@ What we are going to do is just for the sake of example.
 
 - For the other platforms, we need to create a `androidJvmWasmMain` source set to share code between android, jvm and wasmJS targets. 
   This source set also depends on the koog library.
-  In the application module's **build.gradle.kts**, add the following code:
+  In the application module's **build.gradle.kts**, add the following code which defines a common source set for android, jvm and wasmJS:
 
   ```kotlin
   sourceSets {
@@ -72,6 +72,21 @@ What we are going to do is just for the sake of example.
       dependencies {
         implementation(libs.koog.agents)
       }
+    }
+  }
+  ```
+  
+- Since we are adding a custom source sets, gradle may probably complain abount the iOS source set not being configured correctly.
+  To fix that, add the following code to the `sourceSets` block in the **build.gradle.kts** file:
+
+  ```kotlin
+  sourceSets {
+    // other source sets
+    iosMain {
+      dependsOn(commonMain.get())
+      iosX64Main.get().dependsOn(this)
+      iosArm64Main.get().dependsOn(this)
+      iosSimulatorArm64Main.get().dependsOn(this)
     }
   }
   ```
@@ -92,7 +107,7 @@ What we are going to do is just for the sake of example.
   }
   ```
 - ⚠️ Please be careful about the `AI_API_KEY` variable. You should not hardcode-it your API key in the source code. This is just for the sake of the example, for non-public applications, or for servers.
-- The last setp is tp change the `CountryList` composable so that it shows a button next to each row. When the button is clicked, the `CountryInfo` composable is shown with the information about the selected country.
+- Next, change the `CountryList` composable so that it shows a button next to each row. When the button is clicked, the `CountryInfo` composable is shown with the information about the selected country.
 
   ```kotlin
   @Composable
