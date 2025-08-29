@@ -64,11 +64,11 @@ What we are going to do is just for the sake of example.
   ```kotlin
   sourceSets {
     // other source sets
-    val androidJvmWasmMain by sourceSets.creating {
-      dependsOn(commonMain)
-      androidMain.dependsOn(this)
-      jvmMain.dependsOn(this)
-      wasmJsMain.dependsOn(this)
+    val androidJvmWasmMain by creating {
+      dependsOn(commonMain.get())
+      androidMain.get().dependsOn(this)
+      wasmJsMain.get().dependsOn(this)
+      jvmMain.get().dependsOn(this)
       dependencies {
         implementation(libs.koog.agents)
       }
