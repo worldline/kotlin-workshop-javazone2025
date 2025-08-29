@@ -175,3 +175,10 @@ interface ProductRepository: JpaRepository<Product, Long> {
 ```
 
 [The official documentation](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation) provides more detailed explanations and examples.
+
+### Tip: mocking with Kotlin and Spring
+
+The recommended library for mocking in Kotlin is not mockito, notably because its `when` function conflicts with Kotlin's `when` keyword.
+The preferred library is [springmockk](https://github.com/Ninja-Squad/springmockk) which is a wrapper overt the mocking library [MockK](https://mockk.io/) for Spring boot.
+
+You can find an example of its usage is this official [spring kotlin tutorial](https://spring.io/guides/tutorials/spring-boot-kotlin).

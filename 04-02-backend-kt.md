@@ -97,6 +97,36 @@ fun main() {
 }
 ```
 
+## Practical work: frontend + backend monorepo
+
+The last compose exercise was about adding AI features to a compose app.
+However, the way we did was not very secure since the API key was stored in the app.
+Let's fix this by creating a backend that will handle the AI calls and provide its result through a rest API.
+
+This creates a new problem, the REST API is public and can be called by anyone.
+On the web side, this can be solved by CORS configuration.
+However, for mobile and desktop apps, but there are some solutions for this as follows:
+
+- Implement an authentication mechanism and allow only authenticated users to call the API through a token.
+- Limit the number of calls per IP address.
+
+Here the main steps for the practical work:
+
+- Create a new [kmp project](https://kmp.jetbrains.com) that includes all front targets + server
+- Open the project in IntelliJ or Android Studio. We can note two additional folders: 
+  - *server*: a gradle module that contains the Ktor server application.
+  - *shared*: contains the code that will be shared between the composeApp and the server.
+- Each of these new folders contains a *build.gradle.kts* file, meaning that are gradle modules. 
+  This implies that this project has overall 3 module (composeApp, server and shared)
+- On the server, implement a REST API that exposes a POST route that takes a prompt and returns the AI result.
+  - The request body can be like this: `{"prompt": "your prompt"}`.
+  - The response body can be like this: `{"result": "the ai result"}`.
+- Ohe frontend side implment again the same UI as in the previous exercise with these differences:
+  - No need for a shared source set for android, wasmJs and jvm
+  - No need for `koog` there (since it will be called from the backend)
+  - The getAIResult function should call the backend API instead of calling Koog.
+  - Remove the `expect` qualifier from `get***Info` and implement it directly in the common source set.
+- The *share* module can contain the data classes for the request and response body.
 
 ## References
 
