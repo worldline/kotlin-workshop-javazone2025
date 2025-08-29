@@ -6,12 +6,12 @@ Plus, you get all the benefits of the Kotlin language: Conciseness, Null safety,
 
 To get started with Kotlin on these frameworks, you just need to selected Kotlin as the language when creating a new project with [Spring Initializr](https://start.spring.io/) or [Quarkus code generator](https://code.quarkus.io/).
 
-## Spring guide part 1
+## Spring guide part 1 - simple Rest API
 
 Let's start with a simple REST API that provides CRUD operations on a `Customer` data class which is a stored in RAM in a `MutableList`.
 
 - Create a project on [start.spring.io (also called Spring initializr)](https://start.spring.io/) with the following dependencies: Spring Web and Spring Boot DevTools.
-- Choose Kotlin as the language and Kotlin-Grade as the project manager.
+- Choose Kotlin as the language and Gradle with Kotlin DSL as the project manager.
 - Add these dependencies: **Spring Web**, **Spring Boot DevTools**, **h2 database** and **Spring Data JPA**.
 - Click on "Generate". Download the archive, unzip it, and open the project with IntelliJ (preferably) or Android Studio.
 - Create `Customer` data class in the `model` package.
@@ -41,7 +41,7 @@ Let's start with a simple REST API that provides CRUD operations on a `Customer`
 - Start the REST API server by running `.\gradlew bootRun` or from your IDE.
 - Please test the endpoints with a REST client. You can find http files here in [JetBrains format](https://github.com/worldline/learning-kotlin/blob/main/material/spring-boot-kt-api/customer.jetbrains.http) or [VSCode's REST Client extension](https://github.com/worldline/learning-kotlin/blob/main/material/spring-boot-kt-api/customer.vscode-resclient.http)
 
-### Spring boot part 2 - adding a database
+## Spring guide part 2 - In memory database
 
 Let's go a little bit further by storing data in a database and writing some tests.
 
@@ -82,8 +82,25 @@ The default one that is more familiar with Java style and the DSL one which is m
   }
   ```
 
-  - To go further, Spring provides `@ControllerAdvice` to change the exception message. 
+  - It is possible to change the exception message with `@ControllerAdvice` annotation. 
   You can see an [example here](https://spring.io/guides/tutorials/rest/).
+
+- Before running the project, we need to add a plugin that allows Kotlin classes to generate a default constructor `id("org.jetbrains.kotlin.plugin.jpa") version "1.8.10"`. The plugins should look as follows:
+
+  ```kotlin
+  plugins {
+    id("org.jetbrains.kotlin.plugin.jpa") version "1.8.10"
+    id("org.springframework.boot") version "3.0.4"
+    id("io.spring.dependency-management") version "1.1.0"
+    kotlin("jvm") version "1.8.10"
+    kotlin("plugin.spring") version "1.8.10"
+  }
+  ```
+
+- As an exercise, implement these endpoints: POST a single product, DELETE by id (`/product/{id}`) and GET by id (`/product/{id}`).
+  - Hint: `ProductController` already provides the necessary methods.
+- If the server did not hot reload, restart it.
+- Call the different endpoints with a REST client.
 
 ### Tip: how kotlin makes code more concise
 
@@ -107,3 +124,68 @@ fun getById(@PathVariable id: Long): Product {
 }
 ```
 
+### Spring guide part 3 - tests
+
+Spring frameworks helps perform different types of tests by providing different classes out of the box:
+
+- Unit testing of services, repositories and the REST API. This is done through mock utilities such as `MockMVC`.
+- Integration testing of the REST API using `TestRestTemplate`. In this situation, a full server is run and tested.
+
+Most, if not all classes provided by Spring provide an elegant syntax for Java developers.
+Some of them go further by taking advantage of Kotlin specific features.
+In the following, we're going to focus on parts that provide Kotlin DSLs, namely unit testing the REST API with `MockMVC`.
+
+- Create a test class `ProductControllerUnitTests` with this initial content. `MockMvc` allows to unit test the REST API. The `@AutoConfigureMockMvc` annotation allows spring to configure it automatically
+
+  ```kotlin
+  @SpringBootTest
+  @AutoConfigureMockMvc
+  class ProductControllerTests(
+      @Autowired val mockMvc: MockMvc,
+      @Autowired val productRepository: ProductRepository) {
+  
+      @BeforeEach
+      fun reset(){
+          productRepository.deleteAll()
+      }
+  }
+  ```
+
+- Add these two tests. The first one uses a classic approach while the second one takes advantage of Kotlin DSL capabilities.
+  In addition to that, we name using a more readable string literal.
+
+  ```kotlin
+  @Test
+  fun testWithClassicApproach(){
+      mockMvc.perform(get("/product"))
+          .andExpect(status().isOk)
+          .andExpect(content().string(containsString("[]")))
+  }
+  ```
+
+  ```kotlin
+  @Test
+  fun `test GET a single product`() {
+      mockMvc.get("/product/1").andExpect {
+          status { isOk() }
+          jsonPath("$.name") { value("A") }
+          jsonPath("$.price") { value(1) }
+          content { contentType(MediaType.APPLICATION_JSON) }
+      }
+  }
+  ```
+
+- As an exercise, write unit tests for the other endpoints.
+
+### Tip: the request builder of JpaRepository
+
+Spring repositories implement requests based on the name of their methods.
+For example, to get all products sorted by name, we can add this method to the interface.
+
+```kotlin
+interface ProductRepository: JpaRepository<Product, Long> {
+    fun findAllByOrderByNameAsc(): List<Product>
+}
+```
+
+[The official documentation](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation) provides more detailed explanations and examples.
