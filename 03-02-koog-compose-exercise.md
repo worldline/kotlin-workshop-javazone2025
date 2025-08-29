@@ -42,7 +42,7 @@ What we are going to do is just for the sake of example.
   }
   ```
 
-- The `CountryInfo` composable uses a `getCountryInfo` function to get the information about the country. Since the latter uses Koog which is not available on iOS yet, we must provde two implementations, one for iOS, and one for the other platforms. This is possible thanks to the expect/actual mechanism of Kotlin Multiplatform.
+- The `CountryInfo` composable uses a `getCountryInfo` function to get the information about the country. Since the latter uses Koog which is not available on iOS yet, we must provide two implementations, one for iOS, and one for the other platforms. This is possible thanks to the expect/actual mechanism of Kotlin Multiplatform.
 - In the same `countryInfo.kt` file, add the expect declaration for the `getCountryInfo` function:
 
   ```kotlin
@@ -117,3 +117,5 @@ What we are going to do is just for the sake of example.
     }
   }
   ```
+
+- Run the app on the different platform to see the result.
