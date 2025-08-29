@@ -134,3 +134,5 @@ What we are going to do is just for the sake of example.
   ```
 
 - Run the app on the different platform to see the result.
+
+A solution is available here: [03-ai/AI-01-final-step](./03-ai/AI-01-final-step)
