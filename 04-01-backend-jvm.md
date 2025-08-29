@@ -84,8 +84,7 @@ The default one that is more familiar with Java style and the DSL one which is m
 
   - It is possible to change the exception message with the `@ControllerAdvice` annotation. 
   You can see an [example here](https://spring.io/guides/tutorials/rest/).
-- As an exercise, implement these endpoints: POST a single product, DELETE by id (`/product/{id}`), and GET by id (`/product/{id}`).
-  - Hint: `ProductController` already provides the necessary methods.
+- As an exercise, implement these endpoints: POST a single product, DELETE by id (`/product/{id}`).
 - If the server did not hot reload, restart it.
 - Call the different endpoints with a REST client.
 
