@@ -1,0 +1,15 @@
+@base_product_url = http://localhost:8080/api
+
+POST {{base_product_url}}
+Content-Type: application/json
+
+{
+  "country": "Norway"
+}
+###
+POST {{base_product_url}}
+Content-Type: application/json
+
+{
+  "country": "France"
+}

@@ -128,6 +128,21 @@ Here the main steps for the practical work:
   - Remove the `expect` qualifier from `get***Info` and implement it directly in the common source set.
 - The *share* module can contain the data classes for the request and response body.
 
+## Build and deploy image
+
+
+- If you have a frontend app, you can host it in ktor by adding in the routing configuration:
+
+    ```kotlin
+    staticResources("/", "static")
+    ```
+  
+- If you frontend app is a compose wasm app, you can host it also in the ktor server. 
+  To do so, first build it with `./gradlew wasmJsBrowserDistribution` and then copy into *server/src/main/resources/static* the content of *composeApp/build/dist/wasmJs/productionExecutable/*.
+  Finally add the staticResources line in the routing configuration.
+- Once the server is ready, run `./gradlew buildImage` to create a docker image.
+  - This command may fail if you don't disable configuration cache in the by setting the line `org.gradle.configuration-cache=false`.
+
 ## References
 
 - [Official documentation](https://ktor.io/docs/creating-http-apis.html)
