@@ -39,7 +39,7 @@ Let's start with a simple REST API that provides CRUD operations on a `Customer`
 
 - Implement the missing parts.
 - Start the REST API server by running `./gradlew bootRun` or from your IDE.
-- Please test the endpoints with a REST client. You can find HTTP files here in [JetBrains format](https://github.com/worldline/learning-kotlin/blob/main/material/spring-boot-kt-api/customer.jetbrains.http) or [VSCode's REST Client extension](https://github.com/worldline/learning-kotlin/blob/main/material/spring-boot-kt-api/customer.vscode-resclient.http)
+- Please test the endpoints with a REST client. You can find HTTP files here in [IDEA format](./04-backend/kotlin-spring-step-01/customer.idea.http) or [VSCode's REST Client extension](./04-backend/kotlin-spring-step-01/customer.vscode.http)
 
 ## Spring guide part 2 - In-memory database
 
