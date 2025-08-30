@@ -24,11 +24,13 @@ val httpClient = HttpClient {
   }
 }
 
+const val url = "https://pokeapi.co/api/v2/pokemon/"
+
 @Composable
 @Preview
 fun App() {
   LaunchedEffect(Unit) {
-    val response = httpClient.get("https://restcountries.com/v3.1/all?fields=name,flag,flags,capital")
+    val response = httpClient.get(url)
     val body = response.body<String>()
     println(body)
   }
@@ -40,7 +42,7 @@ fun App() {
         .fillMaxSize(),
       horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-      Text("Country list Application")
+      Text("Kotlin workshop")
     }
   }
 }

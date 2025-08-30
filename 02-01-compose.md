@@ -188,7 +188,7 @@ In this practical work, we will fetch a list of items from a REST API and displa
 We will use [ktor client](https://ktor.io/docs/client-create-new-application.html) as our multiplatform HTTP client.
 We will use [restcountries.com](https://restcountries.com/) free and public REST API.
 
-Particularly, we'll call [https://restcountries.com/v3.1/all?fields=name,flag,flags,capital](https://restcountries.com/v3.1/all?fields=name,flag,flags,capital), to fetch countries with their names, flags, and capitals.
+Particularly, we'll call [pokeapi.co/api/v2/pokemon](https://pokeapi.co/api/v2/pokemon/), to fetch Pokémons with their names and detail URL.
 
 ### Part 1: setup ktor client
 
@@ -282,9 +282,10 @@ Particularly, we'll call [https://restcountries.com/v3.1/all?fields=name,flag,fl
 - Next, call the get method on the httpClient instance. Since the get method is a suspending function, it needs to be called from a coroutine or another suspending function (this concept is similar to async/await in JavaScript). Compose provides many tools to work with coroutines. One of them is the `LaunchedEffect` composable that runs some code, within a coroutine, when the parent composable is first launched.
 
   ```kotlin
+  const val url = "https://restcountries.com/v3.1/all?fields=name,flag,flags,capital"
   fun App() {
     LaunchedEffect(Unit) {
-      val response = httpClient.get("https://restcountries.com/v3.1/all?fields=name,flag,flags,capital")
+      val response = httpClient.get(url)
       val body = response.body<String>()
       println(body)
     }
@@ -295,7 +296,7 @@ Particularly, we'll call [https://restcountries.com/v3.1/all?fields=name,flag,fl
 - Run the app on desktop with `./gradlew run`. You should see in the terminal the JSON response from the REST API.
 
   ```txt
-  [{"flags":{"png":"https://flagcdn.com/w320/tn.png",...
+  {"count":1302,"next":"https://p,...
   ```
 
 - Just to be sure, you can run the app in other targets:
@@ -349,7 +350,7 @@ Let's see some possible solutions:
 
   ```kotlin
   LaunchedEffect(Unit) {
-    val response = httpClient.get("https://restcountries.com/v3.1/all?fields=name,flag,flags,capital")
+    val response = httpClient.get(url)
     val body = response.body<String>()
     println(body)
   }
@@ -359,7 +360,7 @@ Let's see some possible solutions:
 
   ```kotlin
   suspend fun fetchCountries(): List<Country> {
-    val response = httpClient.get("https://restcountries.com/v3.1/all?fields=name,flag,flags,capital")
+    val response = httpClient.get(url)
     return response.body() // This will be parsed to List<Country> and is inferred from the return type
   }
 

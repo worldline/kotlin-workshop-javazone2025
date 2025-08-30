@@ -73,6 +73,7 @@ kotlin {
       implementation(libs.ktor.client.content.negotiation)
       implementation(libs.kotlin.serialization)
       implementation(libs.bundles.coil)
+      implementation(libs.koog.agents)
     }
     commonTest.dependencies {
       implementation(libs.kotlin.test)
@@ -82,12 +83,6 @@ kotlin {
       implementation(libs.kotlinx.coroutinesSwing)
       implementation(libs.ktor.client.cio)
     }
-    iosMain {
-      dependsOn(commonMain.get())
-      iosX64Main.get().dependsOn(this)
-      iosArm64Main.get().dependsOn(this)
-      iosSimulatorArm64Main.get().dependsOn(this)
-    }
 
     iosMain.dependencies {
       implementation(libs.ktor.client.darwin)
@@ -95,16 +90,6 @@ kotlin {
 
     wasmJsMain.dependencies {
       implementation(libs.ktor.client.js)
-    }
-
-    val androidJvmWasmMain by creating {
-      dependsOn(commonMain.get())
-      androidMain.get().dependsOn(this)
-      wasmJsMain.get().dependsOn(this)
-      jvmMain.get().dependsOn(this)
-      dependencies {
-        implementation(libs.koog.agents)
-      }
     }
   }
 }

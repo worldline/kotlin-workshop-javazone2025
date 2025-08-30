@@ -19,19 +19,12 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-@Serializable
-data class CountryFlagCatalog(val png: String, val svg: String, val alt: String)
 
 @Serializable
-data class CountryName(val common: String, val official: String)
+data class Pokemon(val name: String, val url: String)
 
 @Serializable
-data class Country(
-  val name: CountryName,
-  val flag: String,
-  val flags: CountryFlagCatalog,
-  val capital: List<String>
-)
+data class PokeApiPage(val count: Int, val next: String, val previous: String?, val results: List<Pokemon>)
 
 val httpClient = HttpClient {
   install(ContentNegotiation) {
@@ -39,17 +32,19 @@ val httpClient = HttpClient {
   }
 }
 
-suspend fun fetchCountries(): List<Country> {
-  val response = httpClient.get("https://restcountries.com/v3.1/all?fields=name,flag,flags,capital")
-  return response.body() // This will be parsed to List<Country> and is inferred from the return type
+const val url = "https://pokeapi.co/api/v2/pokemon/"
+
+suspend fun fetchFirstPage(): PokeApiPage {
+  val response = httpClient.get(url)
+  return response.body()
 }
 
 @Composable
 @Preview
 fun App() {
   LaunchedEffect(Unit) {
-    val countries = fetchCountries()
-    println(countries)
+    val pokemons = fetchFirstPage().results
+    println(pokemons)
   }
   MaterialTheme {
     Column(
@@ -59,7 +54,7 @@ fun App() {
         .fillMaxSize(),
       horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-      Text("Country list Application")
+      Text("Kotlin workshop")
     }
   }
 }
