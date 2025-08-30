@@ -4,12 +4,12 @@ POST {{base_product_url}}
 Content-Type: application/json
 
 {
-  "country": "Norway"
+  "name": "Budew"
 }
 ###
 POST {{base_product_url}}
 Content-Type: application/json
 
 {
-  "country": "France"
+  "name": "Charizard"
 }

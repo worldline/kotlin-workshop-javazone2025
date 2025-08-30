@@ -30,7 +30,7 @@ fun App() {
         .fillMaxSize(),
       horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-      CountryList()
+      PokemonList()
     }
   }
 }

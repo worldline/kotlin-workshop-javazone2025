@@ -3,7 +3,7 @@ package com.worldline.training
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CountryInfoRequest(val country: String)
+data class AiInfoRequestBody(val name: String)
 
 @Serializable
-data class CountryInfoResponse(val response: String)
+data class AiInfoResponseBody(val response: String)

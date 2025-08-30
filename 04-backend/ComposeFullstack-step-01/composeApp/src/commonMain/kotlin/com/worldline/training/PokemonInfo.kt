@@ -10,19 +10,19 @@ import androidx.compose.runtime.setValue
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun CountryInfo(countryName: String) {
-  var countryInfo by remember { mutableStateOf("") }
-  LaunchedEffect(countryName) {
-    countryInfo = ""
-    if (countryName.isNotBlank()) {
-      countryInfo = fetchCountryInfo(countryName)
+fun PokemonInfo(name: String) {
+  var aiResult by remember { mutableStateOf("") }
+  LaunchedEffect(name) {
+    aiResult = ""
+    if (name.isNotBlank()) {
+      aiResult = getInfoFromAi(name)
     }
   }
-  Text("Country $countryName info from AI : $countryInfo")
+  Text("$name info from AI : $aiResult")
 }
 
 @Preview
 @Composable
-fun PreviewCoutryInfo() {
-  CountryInfo("France")
+fun PreviewPokemonInfo() {
+  PokemonInfo("Budew")
 }

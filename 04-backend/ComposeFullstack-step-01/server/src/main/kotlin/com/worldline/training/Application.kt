@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
 
 val agent = AIAgent(
   executor = simpleGoogleAIExecutor(System.getenv("GOOGLEAI_API_KEY")),
-  systemPrompt = "You give information about a given country. Please answer in concise manner that fits in one line.",
+  systemPrompt = "You give information about a Pokémon given its name. Please answer in concise manner that fits in one line.",
   llmModel = GoogleModels.Gemini2_0FlashLite
 )
 
@@ -29,11 +29,9 @@ fun Application.module() {
   routing {
     route("/api") {
       post {
-        val request = call.receive<CountryInfoRequest>()
-        print("Received request for country: ${request.country}\n")
-        val result = agent.run(request.country)
-        print("Agent result: $result\n")
-        call.respond(CountryInfoResponse(result))
+        val request = call.receive<AiInfoRequestBody>()
+        val result = agent.run(request.name)
+        call.respond(AiInfoResponseBody(result))
       }
     }
     staticResources("/", "static")

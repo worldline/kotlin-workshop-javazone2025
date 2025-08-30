@@ -39,5 +39,5 @@ fun PokemonInfo(name: String) {
 @Preview
 @Composable
 fun PreviewPokemonInfo() {
-  PokemonInfo("France")
+  PokemonInfo("Budew")
 }

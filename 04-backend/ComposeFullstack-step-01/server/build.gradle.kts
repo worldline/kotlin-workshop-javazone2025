@@ -23,13 +23,10 @@ dependencies {
 }
 
 ktor {
-  fatJar {
-    archiveFileName.set("fat.jar")
-  }
   docker {
     externalRegistry.set(
       io.ktor.plugin.features.DockerImageRegistry.dockerHub(
-        appName = provider { "country-ai-info" },
+        appName = provider { "jz25-kotlin-workshop" },
         username = providers.environmentVariable("CONTAINER_REGISTRY_USERNAME"),
         password = providers.environmentVariable("CONTAINER_REGISTRY_PASSWORD")
       )

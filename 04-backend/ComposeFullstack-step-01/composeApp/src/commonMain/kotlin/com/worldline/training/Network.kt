@@ -17,17 +17,18 @@ val client = HttpClient {
   }
 }
 
-suspend fun fetchCountries(): List<Country> {
-  val response = client.get("https://restcountries.com/v3.1/all?fields=name,flag,flags,capital")
+suspend fun fetchFirstPage(): PokeApiPage {
+  val url = "https://pokeapi.co/api/v2/pokemon/"
+  val response = client.get(url)
   return response.body()
 }
 
-suspend fun fetchCountryInfo(countryName: String): String {
+suspend fun getInfoFromAi(name: String): String {
   val url = if (getPlatform().name == "Web with Kotlin/Wasm") "/api" else "http://localhost:8080/api"
   val response = client.post(url) {
-    setBody(CountryInfoRequest(countryName))
+    setBody(AiInfoRequestBody(name))
     contentType(ContentType.Application.Json)
   }
-  val countryInfoResponse = response.body<CountryInfoResponse>()
-  return countryInfoResponse.response
+  val aiInfoResponseBody = response.body<AiInfoResponseBody>()
+  return aiInfoResponseBody.response
 }
