@@ -184,10 +184,8 @@ During development, the desktop target is the best one to use, because it is the
 
 ## PW: present a list fetched from the internet
 
-In this practical work, we will fetch a list of items from a REST API and display it in our Compose UI.
-We will use [ktor client](https://ktor.io/docs/client-create-new-application.html) as our multiplatform HTTP client.
-We will use [restcountries.com](https://restcountries.com/) free and public REST API.
-
+In this practical work, we will fetch a list of Pokémons from a REST API and display it in our Compose UI.
+We will use [ktor client](https://ktor.io/docs/client-create-new-application.html) which is a multiplatform HTTP client and [pokeapi.co](https://pokeapi.co/) which is a free REST API.
 Particularly, we'll call [pokeapi.co/api/v2/pokemon](https://pokeapi.co/api/v2/pokemon/), to fetch Pokémons with their names and detail URL.
 
 ### Part 1: setup ktor client
@@ -282,7 +280,7 @@ Particularly, we'll call [pokeapi.co/api/v2/pokemon](https://pokeapi.co/api/v2/p
 - Next, call the get method on the httpClient instance. Since the get method is a suspending function, it needs to be called from a coroutine or another suspending function (this concept is similar to async/await in JavaScript). Compose provides many tools to work with coroutines. One of them is the `LaunchedEffect` composable that runs some code, within a coroutine, when the parent composable is first launched.
 
   ```kotlin
-  const val url = "https://restcountries.com/v3.1/all?fields=name,flag,flags,capital"
+  const val url = "https://pokeapi.co/api/v2/pokemon/"
   fun App() {
     LaunchedEffect(Unit) {
       val response = httpClient.get(url)

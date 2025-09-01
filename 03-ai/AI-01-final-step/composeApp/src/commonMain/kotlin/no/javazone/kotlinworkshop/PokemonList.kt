@@ -68,7 +68,6 @@ fun PokemonList() {
       }
     }
   }
-
 }
 
 @Composable

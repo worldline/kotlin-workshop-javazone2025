@@ -146,7 +146,7 @@ Here the main steps for the practical work:
   - On macOS, you may need to install `docker-credential-helper` with `brew install docker-credential-helper`
 - If you encounter issues with the above task, you can try a more manual approach.
 - If you use podamn, you can also follow this approach proposed by [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/podman-ktor-deploy)
-  - With these commands to build and deploy: `podman build --platform linux/amd64 --tag countryai:v1 .`, and `podman push countryai:v1 registry/countryai:v1`
+  - With these commands to build and deploy an image: `podman build --platform linux/amd64 --tag [image-name]:v1 .`, and `podman push [image-name]:v1 [registry url]/[image-name]:v1`
 - Once the app is built, you can publish it manually or with the `publishImage` task. The latter can be configured in the `build.gradle.kts` file as follows:
 
   ```kotlin
