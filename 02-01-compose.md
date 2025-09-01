@@ -314,36 +314,28 @@ Try to guess the data classes we need before looking at a solution below.
 
 ```kotlin
 @Serializable
-data class CountryFlagCatalog(val png: String, val svg: String, val alt: String)
+data class Pokemon(val name: String, val url: String)
 
 @Serializable
-data class CountryName(val common: String, val official: String)
-
-@Serializable
-data class Country(
-  val name: CountryName,
-  val flag: String,
-  val flags: CountryFlagCatalog,
-  val capital: List<String>
-)
+data class PokeApiPage(val count: Int, val next: String, val previous: String?, val results: List<Pokemon>)
 ```
 
 The serializable annotation is important because it allows ktor to introspect the data classes and automatically serialize/deserialize them to/from JSON.
 
-Next, we need to tell ktor that it needs to parse the body as a list of countries (in Kotlin, it is this type `List<Country>`).
-There are many ways to do it depending on where we provide this information; at variable declaration, at the call site, or as a return value of a function.
+Next, we need to tell ktor that it needs to parse the body as an object of type `PokeApiPage`.
+There are many ways to do it depending on where we provide the type information: at variable declaration, at the call site, or as a return value of a function.
 Let's see some possible solutions:
 
 - At the call site; just replace this line `val body = response.body<String>()` with the following one.
 
   ```kotlin
-  val body = response.body<List<Country>>()
+  val body = response.body<List<PokeApiPage>>()
   ```
 
 - At variable declaration: in this case, Kotlin can infer the type from the assignment. Replace this line `val body = response.body<String>()` with this line:
 
   ```kotlin
-  val countries: List<Country> = response.body()
+  val pokeApiPage: List<PokeApiPage> = response.body()
   ```
 
 - As a return value of a function; is similar to the previous solution but the type is inferred from the return value instead of being explicitly declared. Replace this code:
@@ -359,24 +351,23 @@ Let's see some possible solutions:
   with this one:
 
   ```kotlin
-  suspend fun fetchCountries(): List<Country> {
+  suspend fun fetchRemoteData(): List<PokeApiPage> {
     val response = httpClient.get(url)
-    return response.body() // This will be parsed to List<Country> and is inferred from the return type
+    return response.body()
   }
 
   LaunchedEffect(Unit) {
-    val countries = fetchCountries()
-    println(countries)
+    val page = fetchRemoteData()
+    println(page)
   }
   ```
 
-- Run the app again to check that it still prints the list of countries.
+- Run the app again to check that it prints now a `toString` representation of the result.
 
 ### Part 3 - exercise
 
-Using the previous exercises as a reference, display the list of countries in a `LazyColumn`.
-Also, display the flags using both the emoji and the svg.
-For the latter, the [coil](https://coil-kt.github.io/coil/) library provides access to the `AsyncImage` composable, which loads an image from a url.
+Using the previous exercises as a reference, display the list of Pokémons in a `LazyColumn`.
+Each row shows the image and the name of a Pokémon.
 
 Please find some notes and tips to help you on the exercise:
 
@@ -393,9 +384,14 @@ Please find some notes and tips to help you on the exercise:
   coil = ["coil-compose", "coil-ktor3", "coil-svg"]
   ```
 
-- ⚠️ the emojis may not show correctly on Windows.
+- We can use the [coil](https://coil-kt.github.io/coil/) library provides to get access to the `AsyncImage` composable, which loads an image from a url.
+  - The PokéAPI hosts images at this url: `"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png"`.
+  - The Pokémon's id is the last path component of its url, as provided by the PokéAPI. You can obtain the id from the Pokémon's url by combining these functions
+    - `trimEnd('/')`: removes trailing `/` 
+    - `split("/")`: divided the strings into a List of substrings delimited by `/`.
+    - `last()`: gets the last item of a collection
+    - `toInt()`: converts a String to Int
 
-![Countries app screenshot](./assets/countries.png)
 
 ### Solutions
 
