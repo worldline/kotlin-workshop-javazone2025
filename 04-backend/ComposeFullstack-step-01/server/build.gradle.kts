@@ -23,10 +23,15 @@ dependencies {
 }
 
 ktor {
+  fatJar {
+    archiveFileName.set("fat.jar")
+  }
   docker {
+    localImageName.set("jz25-kt-image")
+    imageTag.set("1.0.0")
     externalRegistry.set(
       io.ktor.plugin.features.DockerImageRegistry.dockerHub(
-        appName = provider { "jz25-kotlin-workshop" },
+        appName = provider { "jz25-kt" },
         username = providers.environmentVariable("CONTAINER_REGISTRY_USERNAME"),
         password = providers.environmentVariable("CONTAINER_REGISTRY_PASSWORD")
       )

@@ -140,18 +140,32 @@ Here the main steps for the practical work:
 - If you frontend app is a compose wasm app, you can host it also in the ktor server. 
   To do so, first build it with `./gradlew wasmJsBrowserDistribution` and then copy into *server/src/main/resources/static* the content of *composeApp/build/dist/wasmJs/productionExecutable/*.
   Finally add the staticResources line in the routing configuration.
-- Once the server is ready, run `./gradlew buildImage` to create a docker image.
-  - This command may fail if you don't disable configuration cache in the by setting the line `org.gradle.configuration-cache=false`.
-  - You may need prior login to docker hub `docker login docker.io` or `podman login docker.io`.
-  - On macOS, you may need to install `docker-credential-helper` with `brew install docker-credential-helper`
-- If you encounter issues with the above task, you can try a more manual approach.
-- If you use podamn, you can also follow this approach proposed by [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/podman-ktor-deploy)
-  - With these commands to build and deploy an image: `podman build --platform linux/amd64 --tag [image-name]:v1 .`, and `podman push [image-name]:v1 [registry url]/[image-name]:v1`
-- Once the app is built, you can publish it manually or with the `publishImage` task. The latter can be configured in the `build.gradle.kts` file as follows:
+- Once the server is ready, run `./gradlew buildImage` to create a docker image. You can configure the image in the server's `build.gradle.kts` file.
+
+```kotlin
+ktor {
+  docker {
+    imageName.set("your-image-name")
+    imageTag.set("latest")
+  }
+}
+```
+
+- If the command fails, try these possible solutions:
+  - Login to docker hub from docker or podman cli: `docker login docker.io` or `podman login docker.io`
+  - Disable configuration cache in the by setting the line `./gradlew --configuration-cache buildImage`
+  - Apply ktor plugin the project root *build.gradle.kts* as follows: `alias(libs.plugins.ktor) apply false`
+  - On macOS, install `docker-credential-helper` with `brew install docker-credential-helper`
+  - If still you encounter issues with the above task, you can try a more manual approach.
+  - If you use podman, you can also follow this approach proposed by [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/podman-ktor-deploy)
+    - With these commands to build and deploy an image: `podman build --platform linux/amd64 --tag [image-name]:v1 .`, and `podman push [image-name]:v1 [registry url]/[image-name]:v1`
+- Once the image is built, you can publish it manually or with the `publishImage` task. The latter can be configured in the `build.gradle.kts` file as follows:
 
   ```kotlin
   ktor {
     docker {
+      imageName.set("your-image-name")
+      imageTag.set("latest")
       externalRegistry.set(
         io.ktor.plugin.features.DockerImageRegistry.dockerHub(
           appName = provider { "image-name" },
@@ -163,6 +177,7 @@ Here the main steps for the practical work:
   }
   ```
 
-## References
+## References and sources
 
 - [Official documentation](https://ktor.io/docs/creating-http-apis.html)
+- [Jib 3.4.2 build fails](https://github.com/GoogleContainerTools/jib/issues/4235#issuecomment-2088829367)

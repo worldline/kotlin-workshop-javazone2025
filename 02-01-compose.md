@@ -2,13 +2,13 @@
 
 Compose Multiplatform is the cross-platform equivalent of Compose for Android (which is the current official UI kit for
 Android).
-It runs on iOS, Android, the web and desktop (through the JVM).
+It runs on iOS, Android, the web, and desktop (through the JVM).
 Thus, it really allows Kotlin to be a _write once, run everywhere_ language.
 
 The current best way to get started in with the [Kotlin playground](https://play.kotlinlang.org/) which renders UI
 components in the browser thanks to the support of the web platform.
 
-## First compose App
+## First Compose App
 
 Let's start by running our first Compose Multiplatform application in the Kotlin playground:
 
@@ -18,12 +18,12 @@ Let's start by running our first Compose Multiplatform application in the Kotlin
 1. Read the code and analyze how the components are structured.
 
 
-Compose works in a declarative way similar to React:
+Compose works in a declarative way, similar to React:
 
 - You define the UI in a function using a syntax similar to HTML.
   - In reality, it is a composition of Higher Order Functions (parenthesis are omitted as we have seen in the first part).
   - The first letter is capitalized, which is a convention in Compose (also similar to React).
-  - The function must have the `Composable` annotation.
+  - The function must have the `@Composable` annotation.
 - Any element that changes in the UI must be a **state** using this syntax:
   `var myStateVar by remember { mutableStateOf("Hello World!") }`
 
@@ -76,7 +76,7 @@ fun App() { // 2
 2. The function `App` is defined, which will be the entry point of our UI (called from the `main` function).
 3. `MaterialTheme` is a composable function that provides a Material Design theme for the UI. All the UI is embedded in this theme to ensure consistent styling.
 4. `greetingText` is a mutable state variable initialized with `"Hello World!"`. This means that whenever this variable changes, the UI will be recomposed to reflect the new value.
-5. `showImage` is also a mutable state variable initialized with `false`, which will control the visibility of the image.
+5. `showImage` is also a mutable state variable initialized with `false`, which will control the visibility of the text.
 6. `counter` is also a mutable state variable initialized with `0`, which will be used to count the number of button clicks.
 7. `Column` is a composable function that arranges its children in a vertical column. The `Modifier.fillMaxWidth()` makes the column take the full width of the parent, and `horizontalAlignment = Alignment.CenterHorizontally` centers the children horizontally.
 8. `Button` is a composable function that creates a button. The `onClick` lambda is executed when the button is clicked.
@@ -91,7 +91,7 @@ fun App() { // 2
 
 ### Practical work: List + Changing the button behavior
 
-Let's add a list and change the button behaviour to add an item to the list instead of changing the greeting text.
+Let's add a list and change the button behavior to add an item to the list instead of changing the greeting text.
 
 1. Add these imports:
 
@@ -141,8 +141,7 @@ A solution is [available here](https://pl.kotl.in/gafzm3lxw)
 ## Local development
 
 Once you are familiar with the basics, you can use the [Kotlin Multiplatform template](https://kmp.jetbrains.com/) which
-generates starter projects.
-From this page, generate a new project with the following options (Alternatively, you can use this link to download
+generates starter projects. From this page, generate a new project with the following options (Alternatively, you can use this link to download
 the [project template directly](https://kmp.jetbrains.com/generateKmtProject?name=JavaZone2025&id=no.javazone.kotlinworkshop&spec=%7B%22template_id%22%3A%22kmt%22%2C%22targets%22%3A%7B%22android%22%3A%7B%22ui%22%3A%5B%22compose%22%5D%7D%2C%22ios%22%3A%7B%22ui%22%3A%5B%22compose%22%5D%7D%2C%22desktop%22%3A%7B%22ui%22%3A%5B%22compose%22%5D%7D%2C%22web%22%3A%7B%22ui%22%3A%5B%22compose%22%5D%7D%7D%2C%22include_tests%22%3Atrue%7D)):
 
 - Project Name: `JavaZone 2025 Kotlin workshop`
@@ -175,18 +174,18 @@ Let's run one of the available targets:
 - iOS via the run button in the IDE
 
 
-This illustration below shows what we see when we run all the targets together.
+The illustration below shows what we see when we run all the targets together.
 From left to right: wasmJs, JVM, iOS, and finally Android.
 
 ![Compose multiplatform apps](./assets/compose-multiplatform-apps.png)
 
 During development, the desktop target is the best one to use, because it is the fastest to run and supports hot reload (when code changes the running app reloads near-instantly).
 
-## PW: present a list fetched from the internet
+## PW: Present a List Fetched from the Internet
 
-In this practical work, we will fetch a list of Pokémons from a REST API and display it in our Compose UI.
-We will use [ktor client](https://ktor.io/docs/client-create-new-application.html) which is a multiplatform HTTP client and [pokeapi.co](https://pokeapi.co/) which is a free REST API.
-Particularly, we'll call [pokeapi.co/api/v2/pokemon](https://pokeapi.co/api/v2/pokemon/), to fetch Pokémons with their names and detail URL.
+In this practical work, we will fetch a list of Pokémon from a REST API and display it in our Compose UI.
+We will use [Ktor client](https://ktor.io/docs/client-create-new-application.html), which is a multiplatform HTTP client, and [pokeapi.co](https://pokeapi.co/), which is a free REST API.
+Specifically, we'll call [pokeapi.co/api/v2/pokemon](https://pokeapi.co/api/v2/pokemon/) to fetch Pokémon with their names and detail URLs.
 
 ### Part 1: setup ktor client
 
