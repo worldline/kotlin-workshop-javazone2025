@@ -5,7 +5,7 @@ Welcome to the Kotlin workshop for JavaZone 2025!
 
 <img src="./assets/ws-qrcode.svg" width="200" height="200" />
 
-[wrl.li/jz25-kt](https://wrl.li/jz25-kt)
+[**wrl.li/jz25-kt**](https://wrl.li/jz25-kt)
 
 The goal of this workshop is to illustrate how Kotlin is a **write once, run everywhere** language.
 Indeed, Kotlin can target Android, iOS, Web, Desktop, and Server.
