@@ -1,7 +1,7 @@
 # Ktor server
 
 Ktor is a cross-platform Kotlin library for building both HTTP clients and servers.
-This makes Ktor a useful library to learn for both front-end developers for its HTTP client capabilities and backend-development for its HTTP server capabilities.
+This makes Ktor a useful library to learn for both front-end developers (for its HTTP client capabilities) and backend developers (for its HTTP server capabilities).
 
 We'll focus here on the server part, and we'll create a REST API server.
 
@@ -47,7 +47,7 @@ We'll focus here on the server part, and we'll create a REST API server.
   }
   ```
 
-- To enable the route call `customerRouting()` in the routing configuration file located in `plugins/Routing.kt`.
+- To enable the route, call `customerRouting()` in the routing configuration file located in `plugins/Routing.kt`.
 
   ```kotlin
   fun Application.configureRouting() {
@@ -57,10 +57,10 @@ We'll focus here on the server part, and we'll create a REST API server.
   }
   ```
 
-- For simplicity, use a global in-memory list of customers `val store = mutableListOf<Customer>()`.
+- For simplicity, use a global in-memory list of customers: `val store = mutableListOf<Customer>()`.
 - Run the server by running the main method.
-- Test the api on the IDE by using an http file or using any other client.
-- If needed, the following http file can be used to test the API with IntelliJ ultimate or VSCode: [04-backend/ktor-calls.http](./04-backend/ktor-calls.http)
+- Test the API in the IDE by using an HTTP file or any other client.
+- If needed, the following HTTP file can be used to test the API with IntelliJ Ultimate or VS Code: [04-backend/ktor-calls.http](./04-backend/ktor-calls.http)
 
 
 ## Tip: return@label
@@ -75,7 +75,7 @@ lambdaA {
             val randomInt = Random.nextInt(0, 100)
             if (randomInt > 50) return@lambdaC else return@lambdaB
         }
-        printf("In lambdaB")
+        println("In lambdaB")
     }
 }
 ```
@@ -87,58 +87,58 @@ import kotlin.random.Random
 fun main() {
    val kotlin = "🙂"
    kotlin.let {
-       it.apply {
-			val randomInt = Random.nextInt(0, 100)
-            println(randomInt)
-            if (randomInt > 50) return@apply else return@let
-       }
-       println("int let after apply")
+     it.apply {
+       val randomInt = Random.nextInt(0, 100)
+       println(randomInt)
+       if (randomInt > 50) return@apply else return@let
+     }
+     println("in let after apply")
    }
 }
 ```
 
 ## Practical work: frontend + backend monorepo
 
-The last compose exercise was about adding AI features to a compose app.
-However, the way we did was not very secure since the API key was stored in the app.
-Let's fix this by creating a backend that will handle the AI calls and provide its result through a rest API.
+The last Compose exercise was about adding AI features to a Compose app.
+However, the way we did it was not very secure since the API key was stored in the app.
+Let's fix this by creating a backend that will handle the AI calls and provide its result through a REST API.
 
-This creates a new problem, the REST API is public and can be called by anyone.
+
+This creates a new problem: the REST API is public and can be called by anyone.
 On the web side, this can be solved by CORS configuration.
-However, for mobile and desktop apps, but there are some solutions for this as follows:
+However, for mobile and desktop apps, there are some solutions for this as follows:
 
 - Implement an authentication mechanism and allow only authenticated users to call the API through a token.
 - Limit the number of calls per IP address.
 
-Here the main steps for the practical work:
+Here are the main steps for the practical work:
 
-- Create a new [kmp project](https://kmp.jetbrains.com) that includes all front targets + server
+- Create a new [KMP project](https://kmp.jetbrains.com) that includes all frontend targets + server
 - Open the project in IntelliJ or Android Studio. We can note two additional folders: 
-  - *server*: a gradle module that contains the Ktor server application.
+  - *server*: a Gradle module that contains the Ktor server application.
   - *shared*: contains the code that will be shared between the composeApp and the server.
-- Each of these new folders contains a *build.gradle.kts* file, meaning that are gradle modules. 
-  This implies that this project has overall 3 module (composeApp, server and shared)
+- Each of these new folders contains a *build.gradle.kts* file, meaning that are Gradle modules. 
+  This implies that this project has overall 3 modules (composeApp, server, and shared)
 - On the server, implement a REST API that exposes a POST route that takes a prompt and returns the AI result.
   - The request body can be like this: `{"prompt": "your prompt"}`.
-  - The response body can be like this: `{"result": "the ai result"}`.
-- Ohe frontend side implment again the same UI as in the previous exercise with these differences:
-  - No need for a shared source set for android, wasmJs and jvm
-  - No need for `koog` there (since it will be called from the backend)
+  - The response body can be like this: `{"result": "the AI result"}`.
+- On the frontend side, implement again the same UI as in the previous exercise, without `koog` (since it will be called from the backend)
   - The getAIResult function should call the backend API instead of calling Koog.
   - Remove the `expect` qualifier from `get***Info` and implement it directly in the common source set.
-- The *share* module can contain the data classes for the request and response body.
+- The *shared* module can contain the data classes for the request and response body.
 
 ## Build a server that hosts a the webapp
 
-- If you have a frontend app, you can host it in ktor by adding in the routing configuration at the end (please add at the end because the order of routes is important):
+- If you have a frontend app, you can host it in Ktor by adding in the routing configuration at the end (please add at the end because the order of routes is important):
 
     ```kotlin
     staticResources("/", "static")
     ```
   
-- If you frontend app is a compose wasm app, you can host it also in the ktor server. 
+
+- If your frontend app is a Compose Wasm app, you can also host it in the Ktor server. 
   To do so, first build it with `./gradlew wasmJsBrowserDistribution` and then copy into *server/src/main/resources/static* the content of *composeApp/build/dist/wasmJs/productionExecutable/*.
-  Finally add the staticResources line in the routing configuration.
+  Finally, add the staticResources line in the routing configuration.
 
   ```sh
   ./gradlew wasmJsBrowserDistribution
@@ -146,11 +146,11 @@ Here the main steps for the practical work:
   cp -r composeApp/build/dist/wasmJs/productionExecutable/* server/src/main/resources/static/
   ```
 
-- Running the server now hosts the webapp at `/` and the api at `/api`.
+- Running the server now hosts the webapp at `/` and the API at `/api`.
 
 ## Build and deploy image with ktor plugin
 
-- Once the server is ready, run `./gradlew buildImage` to create a docker image. You can configure the image in the server's `build.gradle.kts` file.
+- Once the server is ready, run `./gradlew buildImage` to create a Docker image. You can configure the image in the server's `build.gradle.kts` file.
 
 ```kotlin
 ktor {
@@ -162,12 +162,12 @@ ktor {
 ```
 
 - If the command fails, try these possible solutions:
-  - Login to docker hub from docker or podman cli: `docker login docker.io` or `podman login docker.io`
-  - Disable configuration cache in the by setting the line `./gradlew --configuration-cache buildImage`
-  - Apply ktor plugin the project root *build.gradle.kts* as follows: `alias(libs.plugins.ktor) apply false`
+  - Log in to Docker Hub from Docker or Podman CLI: `docker login docker.io` or `podman login docker.io`
+  - Disable configuration cache by setting the line `./gradlew --configuration-cache buildImage`
+  - Apply the Ktor plugin in the project root *build.gradle.kts* as follows: `alias(libs.plugins.ktor) apply false`
   - On macOS, install `docker-credential-helper` with `brew install docker-credential-helper`
-  - If still you encounter issues with the above task, you can try a more manual approach.
-  - If you use podman, you can also follow this approach proposed by [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/podman-ktor-deploy). A dedicated section is provided below.
+  - If you still encounter issues with the above task, you can try a more manual approach.
+  - If you use Podman, you can also follow this approach proposed by [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/podman-ktor-deploy). A dedicated section is provided below.
 - Once the image is built, you can publish it manually or with the `publishImage` task. The latter can be configured in the `build.gradle.kts` file as follows:
 
   ```kotlin
@@ -186,12 +186,14 @@ ktor {
   }
   ```
 
-- You run a hosted app here [wrl.li/jz-kt-app](https://wrl.li/jz-kt-app) (it also works on mobile browsers)
-  <img src="./assets/kt-qrcode.svg" width="200" height="200" />
+- You can run a hosted app here: [wrl.li/jz-kt-app](https://wrl.li/jz-kt-app) (it also works on mobile browsers)
+
+<img src="./assets/kt-qrcode.svg" width="200" height="200" />
 
 ## Deploy an image manually with podman and a Containerfile
 
-based on [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/podman-ktor-deploy)
+
+Based on [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/podman-ktor-deploy)
 
 - Create a *container-image* folder with a file called *containerfile* in it. It has the following content:
 
@@ -213,8 +215,8 @@ based on [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/p
 
 - Build the tar image: `./gradlew :server:distTar`
 - Copy the tar into the container-image folder: `cp server/build/distributions/server-1.0.0.tar container-image/`
-- change to the container-image directory: `cd container-image`
-- build the image: `podman build --platform linux/amd64 --tag [image-name]:latest .`
+- Change to the container-image directory: `cd container-image`
+- Build the image: `podman build --platform linux/amd64 --tag [image-name]:latest .`
 - Deploy the image: `podman push [image-name]:latest [registry url]/[image-name]:latest`
 
 ## References and sources
