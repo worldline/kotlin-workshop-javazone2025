@@ -186,7 +186,8 @@ ktor {
   }
   ```
 
-- You run a hosted app here [wrl.li/jz-kt-app](https://wrl.li/jz-kt-app)
+- You run a hosted app here [wrl.li/jz-kt-app](https://wrl.li/jz-kt-app) (it also works on mobile browsers)
+  <img src="./assets/kt-qrcode.svg" width="200" height="200" />
 
 ## Deploy an image manually with podman and a Containerfile
 
