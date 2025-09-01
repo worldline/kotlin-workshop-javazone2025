@@ -1,17 +1,17 @@
 # JVM frameworks for backend development
 
 The two most popular JVM backend frameworks, namely Spring and Quarkus, officially support Kotlin.
-When using Kotlin on these frameworks, you retain all the benefits of the JVM ecosystem, such as native image, garbage collectors, monitoring tools, and documentation.
+When using Kotlin on these frameworks, you retain all the benefits of the JVM ecosystem, such as native images, garbage collectors, monitoring tools, and documentation.
 Plus, you get all the benefits of the Kotlin language: conciseness, null safety, extension functions, DSLs, and expressive test names.
 
-To get started with Kotlin on these frameworks, you just need to select Kotlin as the language when creating a new project with [Spring Initializr](https://start.spring.io/) or [Quarkus code generator](https://code.quarkus.io/).
+To get started with Kotlin on these frameworks, you just need to select Kotlin as the language when creating a new project with [Spring Initializr](https://start.spring.io/) or the [Quarkus code generator](https://code.quarkus.io/).
 
 ## Spring guide part 1 - simple REST API
 
 Let's start with a simple REST API that provides CRUD operations on a `Customer` data class which is stored in RAM in a `MutableList`.
 
 - Create a project on [start.spring.io (also called Spring Initializr)](https://start.spring.io/).
-  - Choose Kotlin as the language and Gradle with Kotlin DSL as the project manager.
+  - Choose Kotlin as the language and Gradle with Kotlin DSL as the build tool.
   - Add these dependencies: **Spring Web**, **Spring Boot DevTools**, **H2 Database** and **Spring Data JPA**.
 - Click on "Generate". Download the archive, unzip it, and open the project with IntelliJ (preferably) or Android Studio.
 - Create a `Customer` data class in the `model` package, with the following fields: `val id: String, val firstName: String, val lastName: String, val email: String`.
@@ -39,7 +39,7 @@ Let's start with a simple REST API that provides CRUD operations on a `Customer`
 
 - Implement the missing parts.
 - Start the REST API server by running `./gradlew bootRun` or from your IDE.
-- Please test the endpoints with a REST client. You can find HTTP files here in [IDEA format](./04-backend/kotlin-spring-step-01/customer.idea.http) or [VSCode's REST Client extension](./04-backend/kotlin-spring-step-01/customer.vscode.http)
+- Please test the endpoints with a REST client. You can find HTTP files here in [IDEA format](./04-backend/kotlin-spring-step-01/customer.idea.http) or [VS Code's REST Client extension](./04-backend/kotlin-spring-step-01/customer.vscode.http)
 
 ## Spring guide part 2 - In-memory database
 
@@ -51,7 +51,7 @@ The database API we'll be using is called `JpaRepository`.
 It is a lightweight API that provides common CRUD features by just defining an interface.
 
 On the testing side, we'll see two different syntaxes.
-The default one that is more familiar with Java style and the DSL one which is more readable and more familiar with Kotlin developers.
+The default one is more familiar to Java developers, and the DSL one is more readable and more familiar to Kotlin developers.
 
 - Continue on the existing project or create a new Spring project using [Spring Initializr](https://start.spring.io/) with Kotlin and the following dependencies: Spring Data JPA, H2 Database, Spring Boot DevTools, Spring Web.
 - Open the project and add this class in the `model` package `@Entity class Product(@Id @GeneratedValue var id: Long? = null, var name: String, var price: Int)`. This single line defines the class as well as the minimal JPA annotations (`@Entity`, `@Id` and `@GeneratedValue`) to generate the corresponding table.
@@ -90,14 +90,14 @@ The default one that is more familiar with Java style and the DSL one which is m
 
 ### Tip: how Kotlin makes code more concise
 
-The Elvis operator `?:` allows us to reduce the amount of code as we have seen with:
+The Elvis operator `?:` allows us to reduce the amount of code, as we have seen with:
 
 ```kotlin
 fun getById(@PathVariable id: Long) =
           productService.getById(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
 ```
 
-Here is a longer version as a reference:
+Here is a longer version for reference:
 
 ```kotlin
 @GetMapping("{id}")
@@ -110,7 +110,7 @@ fun getById(@PathVariable id: Long): Product {
 }
 ```
 
-### Spring guide part 3 - tests
+### Spring guide part 3 - Tests
 
 Spring frameworks help perform different types of tests by providing different classes out of the box:
 
@@ -126,7 +126,7 @@ In the following, we're going to focus on parts that provide Kotlin DSLs, namely
   ```kotlin
   @SpringBootTest
   @AutoConfigureMockMvc
-  class ProductControllerTests(
+  class ProductControllerUnitTests(
       @Autowired val mockMvc: MockMvc,
       @Autowired val productRepository: ProductRepository) {
   
@@ -142,7 +142,7 @@ In the following, we're going to focus on parts that provide Kotlin DSLs, namely
 
   ```kotlin
   @Test
-  fun testWithClassicApproach(){
+  fun testWithClassicApproach() {
       mockMvc.perform(get("/product"))
           .andExpect(status().isOk)
           .andExpect(content().string(containsString("[]")))
@@ -178,7 +178,8 @@ interface ProductRepository: JpaRepository<Product, Long> {
 
 ### Tip: mocking with Kotlin and Spring
 
-The recommended library for mocking in Kotlin is not mockito, notably because its `when` function conflicts with Kotlin's `when` keyword.
-The preferred library is [springmockk](https://github.com/Ninja-Squad/springmockk) which is a wrapper overt the mocking library [MockK](https://mockk.io/) for Spring boot.
 
-You can find an example of its usage is this official [spring kotlin tutorial](https://spring.io/guides/tutorials/spring-boot-kotlin).
+The recommended library for mocking in Kotlin is not Mockito, notably because its `when` function conflicts with Kotlin's `when` keyword.
+The preferred library is [springmockk](https://github.com/Ninja-Squad/springmockk), which is a wrapper over the mocking library [MockK](https://mockk.io/) for Spring Boot.
+
+You can find an example of its usage in this official [Spring Kotlin tutorial](https://spring.io/guides/tutorials/spring-boot-kotlin).
