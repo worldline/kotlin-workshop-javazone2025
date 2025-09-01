@@ -1,0 +1,13 @@
+FROM docker.io/eclipse-temurin:21
+
+ENV TAR_NAME=server-1.0.0
+ENV USER=basicktor
+RUN useradd --create-home --no-log-init --shell /bin/bash ${USER}
+USER ${USER}
+
+COPY ${TAR_NAME}.tar /tmp
+
+RUN tar -xvf /tmp/${TAR_NAME}.tar -C /home/${USER}/
+RUN chmod +x /home/${USER}/${TAR_NAME}/bin/server
+
+ENTRYPOINT ["/home/basicktor/server-1.0.0/bin/server"]

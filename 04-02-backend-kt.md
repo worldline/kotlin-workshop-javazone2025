@@ -128,10 +128,9 @@ Here the main steps for the practical work:
   - Remove the `expect` qualifier from `get***Info` and implement it directly in the common source set.
 - The *share* module can contain the data classes for the request and response body.
 
-## Build and deploy image
+## Build a server that hosts a the webapp
 
-
-- If you have a frontend app, you can host it in ktor by adding in the routing configuration:
+- If you have a frontend app, you can host it in ktor by adding in the routing configuration at the end (please add at the end because the order of routes is important):
 
     ```kotlin
     staticResources("/", "static")
@@ -140,6 +139,17 @@ Here the main steps for the practical work:
 - If you frontend app is a compose wasm app, you can host it also in the ktor server. 
   To do so, first build it with `./gradlew wasmJsBrowserDistribution` and then copy into *server/src/main/resources/static* the content of *composeApp/build/dist/wasmJs/productionExecutable/*.
   Finally add the staticResources line in the routing configuration.
+
+  ```sh
+  ./gradlew wasmJsBrowserDistribution
+  rm -rf server/src/main/resources/static/*
+  cp -r composeApp/build/dist/wasmJs/productionExecutable/* server/src/main/resources/static/
+  ```
+
+- Running the server now hosts the webapp at `/` and the api at `/api`.
+
+## Build and deploy image with ktor plugin
+
 - Once the server is ready, run `./gradlew buildImage` to create a docker image. You can configure the image in the server's `build.gradle.kts` file.
 
 ```kotlin
@@ -157,8 +167,7 @@ ktor {
   - Apply ktor plugin the project root *build.gradle.kts* as follows: `alias(libs.plugins.ktor) apply false`
   - On macOS, install `docker-credential-helper` with `brew install docker-credential-helper`
   - If still you encounter issues with the above task, you can try a more manual approach.
-  - If you use podman, you can also follow this approach proposed by [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/podman-ktor-deploy)
-    - With these commands to build and deploy an image: `podman build --platform linux/amd64 --tag [image-name]:v1 .`, and `podman push [image-name]:v1 [registry url]/[image-name]:v1`
+  - If you use podman, you can also follow this approach proposed by [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/podman-ktor-deploy). A dedicated section is provided below.
 - Once the image is built, you can publish it manually or with the `publishImage` task. The latter can be configured in the `build.gradle.kts` file as follows:
 
   ```kotlin
@@ -176,6 +185,36 @@ ktor {
     }
   }
   ```
+
+- You run a hosted app here [wrl.li/jz-kt-app](https://wrl.li/jz-kt-app)
+
+## Deploy an image manually with podman and a Containerfile
+
+based on [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/podman-ktor-deploy)
+
+- Create a *container-image* folder with a file called *containerfile* in it. It has the following content:
+
+  ```containerfile
+  FROM docker.io/eclipse-temurin:21
+
+  ENV TAR_NAME=server-1.0.0
+  ENV USER=basicktor
+  RUN useradd --create-home --no-log-init --shell /bin/bash ${USER}
+  USER ${USER}
+
+  COPY ${TAR_NAME}.tar /tmp
+
+  RUN tar -xvf /tmp/${TAR_NAME}.tar -C /home/${USER}/
+  RUN chmod +x /home/${USER}/${TAR_NAME}/bin/server
+
+  ENTRYPOINT ["/home/basicktor/server-1.0.0/bin/server"]
+  ```
+
+- Build the tar image: `./gradlew :server:distTar`
+- Copy the tar into the container-image folder: `cp server/build/distributions/server-1.0.0.tar container-image/`
+- change to the container-image directory: `cd container-image`
+- build the image: `podman build --platform linux/amd64 --tag [image-name]:latest .`
+- Deploy the image: `podman push [image-name]:latest [registry url]/[image-name]:latest`
 
 ## References and sources
 

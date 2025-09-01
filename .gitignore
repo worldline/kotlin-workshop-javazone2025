@@ -3,3 +3,4 @@
 .DS_Store
 .vscode/
 gitignore.kt
+container-image/*.tar
