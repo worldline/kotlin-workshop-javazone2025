@@ -123,11 +123,30 @@ Here are the main steps for the practical work:
   - The request body can be like this: `{"prompt": "your prompt"}`.
   - The response body can be like this: `{"result": "the AI result"}`.
 - On the frontend side, implement again the same UI as in the previous exercise, without `koog` (since it will be called from the backend)
-  - The getAIResult function should call the backend API instead of calling Koog.
-  - Remove the `expect` qualifier from `get***Info` and implement it directly in the common source set.
-- The *shared* module can contain the data classes for the request and response body.
+  - The `getInfoFromAi` function should call the backend API instead of directly using Koog.
+- The *shared* module contains the data classes for the request and response body.
 
-## Build a server that hosts a the webapp
+Some tips:
+
+- Check that all plugins are referenced in the root *build.gradle.kts* file. For example you may need to add these two lines:
+
+  ```kotlin
+  alias(libs.plugins.kotlinSerialization) apply false
+  alias(libs.plugins.ktor) apply false
+  ```
+
+- On the server code, do not forget to install the contant negocatition before calling the routing configuration:
+
+  ```kotlin
+  install(ContentNegotiation) {
+      json()
+  }
+  routing {}
+  ```
+
+A solution is available here: [04-backend/ComposeFullstack-step-01](./04-backend/ComposeFullstack-step-01)
+
+## Practical work: host the web app in the Ktor server
 
 - If you have a frontend app, you can host it in Ktor by adding in the routing configuration at the end (please add at the end because the order of routes is important):
 
@@ -147,6 +166,8 @@ Here are the main steps for the practical work:
   ```
 
 - Running the server now hosts the webapp at `/` and the API at `/api`.
+
+A solution is available here: [04-backend/ComposeFullstack-step-01](./04-backend/ComposeFullstack-step-01)
 
 ## Build and deploy a container image
 
