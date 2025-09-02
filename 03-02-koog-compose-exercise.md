@@ -17,7 +17,7 @@ What we are going to do is just for the sake of example.
 - In the version catalog, add the dependency to the Koog library:
 
   ```toml
-  koog = "0.4.0"
+  koog = "X.X.X" # (check for latest version here: https://github.com/JetBrains/koog/releases) 
 
   [libraries]
   koog-agents = { module = "ai.koog:koog-agents", version.ref = "koog" }

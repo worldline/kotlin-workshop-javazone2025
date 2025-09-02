@@ -33,15 +33,17 @@ So, let's get started!
 
 ## 2h agenda for the workshop
 
-1. (30 minutes) Important Kotlin language features for the workshop: [01-01-kotlin-tour.ipynb](./01-01-kotlin-tour.ipynb) and [01-02-exercises.ipynb](./01-02-exercises.ipynb) (solutions are available in [01-02s-solutions.ipynb](./01-02s-solutions.ipynb))
-2. (50 minutes) Compose Multiplatform: [02-01-compose.md](02-01-compose.md)
+The time is just indicative.
+
+1. (20 minutes) Important Kotlin language features for the workshop: [01-01-kotlin-tour.ipynb](./01-01-kotlin-tour.ipynb) and [01-02-exercises.ipynb](./01-02-exercises.ipynb) (solutions are available in [01-02s-solutions.ipynb](./01-02s-solutions.ipynb))
+2. (30 minutes) Compose Multiplatform: [02-01-compose.md](02-01-compose.md)
 3. (10 minutes) Koog: [03-01-koog.ipynb](./03-01-koog.ipynb)
-4. (30 minutes) Exercise: Koog + Compose Multiplatform application: [03-02-koog-compose-exercise.md](./03-02-koog-compose-exercise.md)
+4. (10 minutes) Exercise: Koog + Compose Multiplatform application: [03-02-koog-compose-exercise.md](./03-02-koog-compose-exercise.md)
+5. (40 minutes) Ktor: [04-02-backend-kt.md](./04-02-backend-kt.md)
 
 Extra time (if any):
 
-1. Ktor: [04-02-backend-kt.md](./04-02-backend-kt.md)
-2. Data Science with Kotlin: [05-01-datascience.ipynb](./05-01-datascience.ipynb) and exercises: [05-02-datascience-exercises.ipynb](./05-02-datascience-exercises.ipynb)
+1. Data Science with Kotlin: [05-01-datascience.ipynb](./05-01-datascience.ipynb) and exercises: [05-02-datascience-exercises.ipynb](./05-02-datascience-exercises.ipynb)
 
 ## Complete agenda (for a 3-day training)
 
