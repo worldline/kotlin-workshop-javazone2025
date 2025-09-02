@@ -33,7 +33,7 @@ So, let's get started!
 
 ## 2h agenda for the workshop
 
-1. (30 minutes) Important Kotlin language features for the workshop: [01-01-kotlin-tour.ipynb](./01-01-kotlin-tour.ipynb)
+1. (30 minutes) Important Kotlin language features for the workshop: [01-01-kotlin-tour.ipynb](./01-01-kotlin-tour.ipynb) and [01-02-exercises.ipynb](./01-02-exercises.ipynb) (solutions are available in [01-02s-solutions.ipynb](./01-02s-solutions.ipynb))
 2. (50 minutes) Compose Multiplatform: [02-01-compose.md](02-01-compose.md)
 3. (10 minutes) Koog: [03-01-koog.ipynb](./03-01-koog.ipynb)
 4. (30 minutes) Exercise: Koog + Compose Multiplatform application: [03-02-koog-compose-exercise.md](./03-02-koog-compose-exercise.md)
@@ -61,7 +61,7 @@ When needed, you can go back to this section to check how some language features
 2. Next, let's do some exercises that are listed in the file [01-02-exercises.ipynb](./01-02-exercises.ipynb)
 3. The solutions are available in [01-02s-solutions.ipynb](./01-02s-solutions.ipynb)
 4. Finally, let's quickly see how OOP is done in Kotlin: [01-03-oop.ipynb](./01-03-oop.ipynb)
-5. (Optional) For more features, please open this file: [01-04-more-language-features.ipynb](./01-04-more-language-features.ipynb)
+5. (Optional) For more features, please open this file: [01-04-more-language-features.ipynb](01-03-more-language-features.ipynb)
 
 ### Part 2 - Frontend development
 
