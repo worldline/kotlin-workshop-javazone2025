@@ -33,6 +33,8 @@ So, let's get started!
 
 ## 2h agenda for the workshop
 
+A preview of the is available here: [wrl.li/jz-kt-app](https://wrl.li/jz-kt-app) (please check the network tab of your browser's developer tools to see the requests to the backend).
+
 The time is just indicative.
 
 1. (20 minutes) Important Kotlin language features for the workshop: [01-01-kotlin-tour.ipynb](./01-01-kotlin-tour.ipynb) and [01-02-exercises.ipynb](./01-02-exercises.ipynb) (solutions are available in [01-02s-solutions.ipynb](./01-02s-solutions.ipynb))
