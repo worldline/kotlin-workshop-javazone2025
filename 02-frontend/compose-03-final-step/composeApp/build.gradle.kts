@@ -70,7 +70,6 @@ kotlin {
       implementation(libs.androidx.lifecycle.viewmodelCompose)
       implementation(libs.androidx.lifecycle.runtimeCompose)
       implementation(libs.bundles.ktor)
-      implementation(libs.ktor.client.content.negotiation)
       implementation(libs.kotlin.serialization)
       implementation(libs.bundles.coil)
     }
