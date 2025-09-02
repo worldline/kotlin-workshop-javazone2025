@@ -326,13 +326,13 @@ Let's see some possible solutions:
 - At the call site; just replace this line `val body = response.body<String>()` with the following one.
 
   ```kotlin
-  val body = response.body<List<PokeApiPage>>()
+  val body = response.body<PokeApiPage>()
   ```
 
 - At variable declaration: in this case, Kotlin can infer the type from the assignment. Replace this line `val body = response.body<String>()` with this line:
 
   ```kotlin
-  val pokeApiPage: List<PokeApiPage> = response.body()
+  val pokeApiPage: PokeApiPage = response.body()
   ```
 
 - As a return value of a function; is similar to the previous solution but the type is inferred from the return value instead of being explicitly declared. Replace this code:
@@ -348,7 +348,7 @@ Let's see some possible solutions:
   with this one:
 
   ```kotlin
-  suspend fun fetchRemoteData(): List<PokeApiPage> {
+  suspend fun fetchRemoteData(): PokeApiPage {
     val response = httpClient.get(url)
     return response.body()
   }
