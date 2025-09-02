@@ -148,7 +148,14 @@ Here are the main steps for the practical work:
 
 - Running the server now hosts the webapp at `/` and the API at `/api`.
 
-## Build and deploy image with ktor plugin
+## Build and deploy a container image
+
+There are many ways to build a container image for a Ktor server.
+Here are two of them: using the Ktor plugin or a manual approach with Podman.
+
+If needed, there are free hosting services for container images like [Railway](https://railway.app) or [koyeb.com](https://www.koyeb.com).
+
+### Using the ktor plugin
 
 - Once the server is ready, run `./gradlew buildImage` to create a Docker image. You can configure the image in the server's `build.gradle.kts` file.
 
@@ -190,8 +197,7 @@ ktor {
 
 <img src="./assets/kt-qrcode.svg" width="200" height="200" />
 
-## Deploy an image manually with podman and a Containerfile
-
+## Manual approach with podman
 
 Based on [thunderbiscuit/podman-ktor-deploy](https://github.com/thunderbiscuit/podman-ktor-deploy)
 
